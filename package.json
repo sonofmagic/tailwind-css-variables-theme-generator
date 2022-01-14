@@ -2,9 +2,12 @@
   "name": "tailwind-css-variables-theme-generator",
   "version": "0.0.1",
   "description": "tailwind-css-variables-theme-generator",
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "types": "dist/types/index.d.ts",
   "scripts": {
     "start": "node ./test/fixtures/index.js",
+    "copy:templete": "node scripts/cpt",
     "dev": "cross-env NODE_ENV=development rollup -c",
     "build": "cross-env NODE_ENV=production rollup -c",
     "build:tsc": "cross-env NODE_ENV=development tsc --build tsconfig.json",
