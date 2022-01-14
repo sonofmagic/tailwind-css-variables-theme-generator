@@ -1,0 +1,8 @@
+@use '{{filepath}}' as C;
+@use './util.scss' as Util;
+
+:root {
+  @each $var, $color in C.{{variableName}} {
+    #{$var}: Util.getRgbString($color);
+  }
+}

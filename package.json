@@ -1,11 +1,12 @@
 {
-  "name": "npm-lib-template",
+  "name": "tailwind-css-variables-theme-generator",
   "version": "1.0.0",
-  "description": "npm-lib-template",
+  "description": "tailwind-css-variables-theme-generator",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/types/index.d.ts",
   "scripts": {
+    "start": "node ./src/index.js",
     "dev": "cross-env NODE_ENV=development rollup -c",
     "build": "cross-env NODE_ENV=production rollup -c",
     "build:tsc": "cross-env NODE_ENV=development tsc --build tsconfig.json",
@@ -15,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sonofmagic/npm-lib-template.git"
+    "url": "git+https://github.com/sonofmagic/tailwind-css-variables-theme-generator.git"
   },
   "files": [
     "dist"
@@ -28,9 +29,9 @@
   "author": "SonOfMagic <qq1324318532@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sonofmagic/npm-lib-template/issues"
+    "url": "https://github.com/sonofmagic/tailwind-css-variables-theme-generator/issues"
   },
-  "homepage": "https://github.com/sonofmagic/npm-lib-template#readme",
+  "homepage": "https://github.com/sonofmagic/tailwind-css-variables-theme-generator#readme",
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.8",
     "@rollup/plugin-commonjs": "^21.0.1",
@@ -55,5 +56,10 @@
     "ts-node": "^10.4.0",
     "tslib": "^2.3.1",
     "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "@types/mustache": "^4.1.2",
+    "mustache": "^4.2.0",
+    "sass": "^1.48.0"
   }
 }
