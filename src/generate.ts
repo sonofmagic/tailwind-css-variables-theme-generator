@@ -20,14 +20,14 @@ function getOption (option: IGenerateOption): Required<IGenerateOption> {
     },
     root: {
       replacement: {
-        filepath: '{{filepath}}',
-        variableName: '{{variableName}}'
+        // filepath: '{{filepath}}',
+        // variableName: '{{variableName}}'
       }
     },
     export: {
       replacement: {
-        filepath: '{{filepath}}',
-        variableName: '{{variableName}}'
+        // filepath: '{{filepath}}',
+        // variableName: '{{variableName}}'
       }
     },
     util: true
@@ -39,7 +39,20 @@ function getOption (option: IGenerateOption): Required<IGenerateOption> {
   }
 }
 
-// function renderTemplete () {}
+async function renderTemplete (
+  src: string,
+  replacement: Record<string, string>
+) {
+  let t = await fsp.readFile(src, 'utf-8')
+  if (replacement) {
+    const replacements = Object.entries(replacement)
+    for (let i = 0; i < replacements.length; i++) {
+      const [key, value] = replacements[i]
+      t = t.replace(key, value)
+    }
+  }
+  return t
+}
 
 // function generateTemplete () {}
 
@@ -60,7 +73,7 @@ export async function generate (option: IGenerateOption) {
   const keys = Object.keys(mergedMap)
 
   await cmkdir(absOutdir)
-
+  consola.info('[Output Dir]: ' + absOutdir)
   if (files.variables !== false) {
     const { getVarName, getVarValue } =
       files.variables as Required<IOutFileOption>
@@ -78,23 +91,24 @@ export async function generate (option: IGenerateOption) {
   if (files.extendColors !== false) {
     // js:
     // '{{ removeColorPrefix(k) }}':{{ jsFilterShadow(k) }},
-    const placeholder = '/* {{placeholder}} */'
-    const extendColorsTemplete = await fsp.readFile(
-      resolve(__dirname, './t/js/extendColors.js'),
-      'utf-8'
-    )
+    const filename = 'extendColors.js'
+
     const { getVarName, getVarValue } =
       files.extendColors as Required<IOutFileOption>
     const jsResult = keys
       .map((x) => {
         return `'${getVarName(x)}':${getVarValue(x)},`
       })
-      .join('\n  ')
-    await fsp.writeFile(
-      resolve(absOutdir, 'extendColors.js'),
-      extendColorsTemplete.replace(placeholder, jsResult)
+      .join('\n    ')
+
+    const extendColorsTemplete = await renderTemplete(
+      resolve(__dirname, `./t/js/${filename}`),
+      {
+        '/* {{placeholder}} */': jsResult
+      }
     )
-    consola.success('[extendColors.js] generate Successfully!')
+    await fsp.writeFile(resolve(absOutdir, filename), extendColorsTemplete)
+    consola.success(`[${filename}] generate Successfully!`)
   }
 
   if (files.util !== false) {
@@ -106,18 +120,30 @@ export async function generate (option: IGenerateOption) {
   }
 
   if (files.export !== false) {
-    await fsp.copyFile(
-      resolve(__dirname, './t/scss/export.scss'),
-      resolve(absOutdir, 'export.scss')
-    )
-    consola.success('[export.scss] generate Successfully!')
+    const filename = 'export.scss'
+    const src = resolve(__dirname, `./t/scss/${filename}`)
+    const dest = resolve(absOutdir, filename)
+    const { replacement } = files.export as Required<IOutFileOption>
+    if (replacement) {
+      const content = await renderTemplete(src, replacement)
+      await fsp.writeFile(dest, content, 'utf-8')
+    } else {
+      await fsp.copyFile(src, dest)
+    }
+    consola.success(`[${filename}] generate Successfully!`)
   }
 
   if (files.root !== false) {
-    await fsp.copyFile(
-      resolve(__dirname, './t/scss/root.scss'),
-      resolve(absOutdir, 'root.scss')
-    )
-    consola.success('[root.scss] generate Successfully!')
+    const filename = 'root.scss'
+    const src = resolve(__dirname, `./t/scss/${filename}`)
+    const dest = resolve(absOutdir, filename)
+    const { replacement } = files.root as Required<IOutFileOption>
+    if (replacement) {
+      const content = await renderTemplete(src, replacement)
+      await fsp.writeFile(dest, content, 'utf-8')
+    } else {
+      await fsp.copyFile(src, dest)
+    }
+    consola.success(`[${filename}] generate Successfully!`)
   }
 }

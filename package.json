@@ -1,6 +1,6 @@
 {
   "name": "tailwind-css-variables-theme-generator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "tailwind-css-variables-theme-generator",
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",
@@ -26,7 +26,13 @@
     "access": "public",
     "registry": "https://registry.npmjs.org"
   },
-  "keywords": [],
+  "keywords": [
+    "tailwind",
+    "css",
+    "generator",
+    "theme",
+    "variables"
+  ],
   "author": "SonOfMagic <qq1324318532@gmail.com>",
   "license": "MIT",
   "bugs": {

@@ -1,3 +1,2 @@
 dist/**
 src/t/js/*.js
-test/fixtures/**/*.js
