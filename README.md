@@ -114,7 +114,17 @@ entryPoint should be a scss file and you shall expose your map
 
 ```scss
 @use './constants.scss' as C;
+
+$other-vars: (
+  // same name : override constants map ↑
+  --color-canvas-default-transparent: rgba(32, 54, 85, 0),
+  --color-marketing-icon-primary: #053c74,
+  --color-custom-text-color: #546821
+);
+
 $expose: expose(C.$root-vars);
+$expose1: expose($other-vars);
+
 ```
 
 **`expose`** is a [`CustomFunction`](https://sass-lang.com/documentation/js-api/modules#CustomFunction) defined by **`This package`** to expose data to javascript
