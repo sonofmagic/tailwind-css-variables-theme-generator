@@ -5,7 +5,7 @@ import { getJsValue, getKey, getScssValue } from './defaults'
 import consola from 'consola'
 import { cmkdir } from './utils'
 import { exposeScssVariable } from './scss'
-import type { IGenerateOption, IOutFileOption } from './types'
+import type { IGenerateOption, IOutFileOption, FileEnumType } from './types'
 const resolve = path.resolve
 
 function getOption (option: IGenerateOption): Required<IGenerateOption> {
@@ -75,7 +75,7 @@ export async function generate (option: IGenerateOption) {
   await cmkdir(absOutdir)
   consola.info('[Output Dir]: ' + absOutdir)
   if (files.variables !== false) {
-    const { getVarName, getVarValue } =
+    const { getVarName, getVarValue, outfile } =
       files.variables as Required<IOutFileOption>
     // scss
     // ${{ removeColorPrefix(k) }}:{{ scssFilterShadow(k) }};
@@ -84,7 +84,10 @@ export async function generate (option: IGenerateOption) {
         return `$${getVarName(x)}:${getVarValue(x)};`
       })
       .join('\n')
-    await fsp.writeFile(resolve(absOutdir, 'variables.scss'), scssResult)
+    await fsp.writeFile(
+      outfile ?? resolve(absOutdir, 'variables.scss'),
+      scssResult
+    )
     consola.success('[variables.scss] generate Successfully!')
   }
 
@@ -93,11 +96,11 @@ export async function generate (option: IGenerateOption) {
     // '{{ removeColorPrefix(k) }}':{{ jsFilterShadow(k) }},
     const filename = 'extendColors.js'
 
-    const { getVarName, getVarValue } =
+    const { getVarName, getVarValue, outfile } =
       files.extendColors as Required<IOutFileOption>
     const jsResult = keys
       .map((x) => {
-        return `'${getVarName(x)}':${getVarValue(x)},`
+        return `'${getVarName(x)}': ${getVarValue(x)},`
       })
       .join('\n    ')
 
@@ -107,43 +110,37 @@ export async function generate (option: IGenerateOption) {
         '/* {{placeholder}} */': jsResult
       }
     )
-    await fsp.writeFile(resolve(absOutdir, filename), extendColorsTemplete)
-    consola.success(`[${filename}] generate Successfully!`)
-  }
-
-  if (files.util !== false) {
-    await fsp.copyFile(
-      resolve(__dirname, './t/scss/util.scss'),
-      resolve(absOutdir, 'util.scss')
+    await fsp.writeFile(
+      outfile ?? resolve(absOutdir, filename),
+      extendColorsTemplete
     )
-    consola.success('[util.scss] generate Successfully!')
-  }
-
-  if (files.export !== false) {
-    const filename = 'export.scss'
-    const src = resolve(__dirname, `./t/scss/${filename}`)
-    const dest = resolve(absOutdir, filename)
-    const { replacement } = files.export as Required<IOutFileOption>
-    if (replacement) {
-      const content = await renderTemplete(src, replacement)
-      await fsp.writeFile(dest, content, 'utf-8')
-    } else {
-      await fsp.copyFile(src, dest)
-    }
     consola.success(`[${filename}] generate Successfully!`)
   }
 
-  if (files.root !== false) {
-    const filename = 'root.scss'
-    const src = resolve(__dirname, `./t/scss/${filename}`)
-    const dest = resolve(absOutdir, filename)
-    const { replacement } = files.root as Required<IOutFileOption>
-    if (replacement) {
-      const content = await renderTemplete(src, replacement)
-      await fsp.writeFile(dest, content, 'utf-8')
-    } else {
-      await fsp.copyFile(src, dest)
+  async function handleScssFile (key: FileEnumType, filename: string) {
+    const file = files[key]
+    if (file !== false) {
+      const src = resolve(__dirname, `./t/scss/${filename}`)
+      const dest = resolve(absOutdir, filename)
+      if (file === true) {
+        await fsp.copyFile(src, dest)
+      } else {
+        const { replacement, outfile } = file as Required<IOutFileOption>
+        if (replacement) {
+          const content = await renderTemplete(src, replacement)
+          await fsp.writeFile(outfile ?? dest, content, 'utf-8')
+        } else {
+          await fsp.copyFile(src, outfile ?? dest)
+        }
+      }
+
+      consola.success(`[${filename}] generate Successfully!`)
     }
-    consola.success(`[${filename}] generate Successfully!`)
   }
+
+  await handleScssFile('util', 'util.scss')
+
+  await handleScssFile('export', 'export.scss')
+
+  await handleScssFile('root', 'root.scss')
 }

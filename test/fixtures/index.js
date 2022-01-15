@@ -15,7 +15,8 @@ const path = require('path')
             return `'${str}'`
           }
           return `withOpacityValue('${str}')`
-        }
+        },
+        outfile: path.resolve(__dirname, 'extendColors.js')
       },
       variables: {
         getVarName (str) {

@@ -1,7 +1,10 @@
 export interface IOutFileOption {
   getVarName?: (key: string) => string
   getVarValue?: (key: string) => string
+  // replacements
   replacement?: Record<string, string>
+  // override default filepath
+  outfile?: string
 }
 
 export interface IGenerateOption {
@@ -15,3 +18,10 @@ export interface IGenerateOption {
     export?: IOutFileOption | boolean
   }
 }
+
+export type FileEnumType =
+  | 'extendColors'
+  | 'variables'
+  | 'root'
+  | 'export'
+  | 'util'
