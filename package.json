@@ -1,6 +1,6 @@
 {
   "name": "tailwind-css-variables-theme-generator",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "tailwind-css-variables-theme-generator",
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",

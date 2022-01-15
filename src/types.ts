@@ -1,3 +1,4 @@
+import type { Options } from 'sass'
 export interface IOutFileOption {
   getVarName?: (key: string) => string
   getVarValue?: (key: string) => string
@@ -17,6 +18,7 @@ export interface IGenerateOption {
     util?: IOutFileOption | boolean
     export?: IOutFileOption | boolean
   }
+  sassOptions?: Options<'sync'>
 }
 
 export type FileEnumType =

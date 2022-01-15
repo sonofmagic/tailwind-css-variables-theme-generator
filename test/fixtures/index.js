@@ -36,6 +36,9 @@ const path = require('path')
         }
       },
       util: true
+    },
+    sassOptions: {
+      // ...
     }
   })
 })()

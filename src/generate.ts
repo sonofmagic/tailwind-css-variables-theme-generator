@@ -35,7 +35,8 @@ function getOption (option: IGenerateOption): Required<IGenerateOption> {
   return {
     entryPoint: option.entryPoint,
     outdir: option.outdir ?? '.',
-    files: defu(option.files!, filesDefault)
+    files: defu(option.files!, filesDefault),
+    sassOptions: {}
   }
 }
 
