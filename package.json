@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node ./test/fixtures/index.js",
     "copy": "node scripts/cpt",
-    "dev": "cross-env NODE_ENV=development rollup -c && yarn copy",
+    "dev": "cross-env NODE_ENV=development rollup -cw",
     "build": "cross-env NODE_ENV=production rollup -c && yarn copy",
     "build:tsc": "cross-env NODE_ENV=development tsc --build tsconfig.json",
     "test": "jest",
@@ -44,7 +44,9 @@
     "@types/node": "^17.0.5",
     "@typescript-eslint/eslint-plugin": "^5.8.0",
     "@typescript-eslint/parser": "^5.8.0",
+    "consola": "^2.15.3",
     "cross-env": "^7.0.3",
+    "defu": "^5.0.1",
     "del": "^6.0.0",
     "eslint": "8.5.0",
     "eslint-config-standard": "^16.0.3",
