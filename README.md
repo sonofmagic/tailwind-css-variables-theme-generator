@@ -215,6 +215,28 @@ loaders:{
 - export.scss for webpack sass-loader
 - util.scss for rgb / rgba string
 
+## Theme Toggle
+
+```scss
+:root {
+  @each $var, $color in C.$root-vars {
+    #{$var}: Util.getRgbaString($color);
+  }
+}
+
+[data-color-mode='light'] {
+  @each $var, $color in Light.$light-vars {
+    #{$var}: Util.getRgbaString($color);
+  }
+}
+
+[data-color-mode='dark'] {
+  @each $var, $color in Dark.$dark-vars {
+    #{$var}: Util.getRgbaString($color);
+  }
+}
+```
+
 ## Live Demo
 
 [Demo](https://www.icebreaker.top/)
