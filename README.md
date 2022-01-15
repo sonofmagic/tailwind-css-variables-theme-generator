@@ -137,6 +137,10 @@ output dir
 
 control each output file
 
+- getVarName:`(str:string)=>string`: generate map key function
+- getVarValue:`(str:string)=>string`: generate map value function
+- replacement: `Record<string,string>`: replace template variables
+- outfile: `string`: an abs path, this is a highest priority which will override default outpath.
 ### sassOptions (sass.Options<'sync'>)
 
 ## Output Files
@@ -175,13 +179,11 @@ module.exports = {
 ```scss
 h1{
   @apply text-header-text; 
-  // eq
-  // color: rgb(var(--color-header-text))
+  // eq color: rgb(var(--color-header-text))
 }
 h2{
   @apply text-header-text/70;
-  // eq
-  // color: rgb(var(--color-header-text) / 0.7)
+  // eq color: rgb(var(--color-header-text) / 0.7)
 }
 ```
 or 
