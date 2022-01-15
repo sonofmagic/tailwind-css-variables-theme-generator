@@ -1,5 +1,7 @@
 const fsp = require('fs/promises')
 
   ; (async () => {
-  await fsp.cp('src/t', 'dist/t')
+  await fsp.cp('src/t/', 'dist/t/', {
+    recursive: true
+  })
 })()

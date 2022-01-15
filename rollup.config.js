@@ -14,8 +14,8 @@ const config = {
       format: 'cjs',
       sourcemap: isDev
       // exports: 'auto'
-    },
-    { format: 'esm', file: pkg.module, sourcemap: isDev }
+    }
+    // { format: 'esm', file: pkg.module, sourcemap: isDev }
   ],
 
   plugins: [
@@ -24,7 +24,8 @@ const config = {
     }),
     commonjs(),
     typescript({ tsconfig: './tsconfig.build.json' })
-  ]
+  ],
+  external: [...Object.keys(pkg.dependencies)]
 }
 
 export default config

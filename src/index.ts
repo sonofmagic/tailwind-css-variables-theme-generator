@@ -3,22 +3,10 @@ import path from 'path'
 import type { Value, SassColor, SassString } from 'sass'
 import type { OrderedMap } from 'immutable'
 import * as sass from 'sass'
-
-function getKey (str: string) {
-  return str
-}
-
-function jsFilter (str: string) {
-  return `withOpacityValue('${str}')`
-}
-
-function scssFilter (str: string) {
-  return `rgb(var(${str}))`
-}
+import { getJsValue, getKey, getScssValue } from './defaults'
 
 // The asynchronous variants are much slower
-
-export async function generate (exposeFilePath: string) {
+function exposeScssVariable (exposeFilePath: string) {
   const exposeAarry: OrderedMap<SassString, SassColor>[] = []
   sass.compile(exposeFilePath, {
     functions: {
@@ -30,6 +18,11 @@ export async function generate (exposeFilePath: string) {
       }
     }
   })
+  return exposeAarry
+}
+
+export async function generate (exposeFilePath: string) {
+  const exposeAarry = exposeScssVariable(exposeFilePath)
   const mergedMap: Record<string, string> = {}
   for (let i = 0; i < exposeAarry.length; i++) {
     const map = exposeAarry[i]
@@ -41,7 +34,7 @@ export async function generate (exposeFilePath: string) {
   const keys = Object.keys(mergedMap)
 
   const getScssVarName = getKey
-  const getScssVarValue = scssFilter
+  const getScssVarValue = getScssValue
   // scss
   // ${{ removeColorPrefix(k) }}:{{ scssFilterShadow(k) }};
   const scssResult = keys
@@ -61,7 +54,7 @@ export async function generate (exposeFilePath: string) {
     'utf-8'
   )
   const getJsVarName = getKey
-  const getJsVarValue = jsFilter
+  const getJsVarValue = getJsValue
   const jsResult = keys
     .map((x) => {
       return `'${getJsVarName(x)}':${getJsVarValue(x)},`
