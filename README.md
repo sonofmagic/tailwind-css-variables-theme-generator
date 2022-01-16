@@ -220,19 +220,19 @@ loaders:{
 ```scss
 :root {
   @each $var, $color in C.$root-vars {
-    #{$var}: Util.getRgbaString($color);
+    #{$var}: Util.getRgbString($color);
   }
 }
 
 [data-color-mode='light'] {
   @each $var, $color in Light.$light-vars {
-    #{$var}: Util.getRgbaString($color);
+    #{$var}: Util.getRgbString($color);
   }
 }
 
 [data-color-mode='dark'] {
   @each $var, $color in Dark.$dark-vars {
-    #{$var}: Util.getRgbaString($color);
+    #{$var}: Util.getRgbString($color);
   }
 }
 ```
