@@ -22,7 +22,7 @@ $root-vars: (
   --color-canvas-default-transparent: rgba(34, 39, 46, 0),
   --color-marketing-icon-primary: #6cb6ff,
   ....
-)
+);
 ```
 
 2. expose this sass:map -> js
@@ -33,6 +33,7 @@ $root-vars: (
 // sass:map
 $expose: expose(C.$root-vars);
 ```
+
 Then
 
 ### Basic Usage
@@ -50,6 +51,11 @@ const path = require('path')
 
 ### Full Options Usage
 
+Copy [github](https://github.com/) Theme and apply it to your application.
+
+1. copy all css var to `sass:map` (`:root`, ` [data-color-mode]`,`[data-light-theme]`,`[data-dark-theme] `)
+
+2. prepare following config:
 ```js
 const { generate } = require('tailwind-css-variables-theme-generator')
 const path = require('path')
@@ -72,9 +78,9 @@ const path = require('path')
             return `'${str}'`
           }
           return `withOpacityValue('${str}')`
-        },
+        }
         // override default filepath
-        outfile: path.resolve(__dirname, 'extendColors.js')
+        // outfile: path.resolve(__dirname, 'extendColors.js')
       },
       // variables.scss for global scss variables
       variables: {
@@ -106,8 +112,10 @@ const path = require('path')
   })
 })()
 ```
+3. apply the outputs to your **global** stylesheet and `tailwind.config.js`
 
 ## Options
+
 ### entryPoint (required)
 
 entryPoint should be a scss file and you shall expose your map
@@ -124,7 +132,6 @@ $other-vars: (
 
 $expose: expose(C.$root-vars);
 $expose1: expose($other-vars);
-
 ```
 
 **`expose`** is a [`CustomFunction`](https://sass-lang.com/documentation/js-api/modules#CustomFunction) defined by **`This package`** to expose data to javascript
@@ -141,6 +148,7 @@ control each output file
 - getVarValue:`(str:string)=>string`: generate map value function
 - replacement: `Record<string,string>`: replace template variables
 - outfile: `string`: an abs path, this is a highest priority which will override default outpath.
+
 ### sassOptions (sass.Options<'sync'>)
 
 ## Output Files
@@ -160,7 +168,7 @@ module.exports = {
   //...
   theme: {
     extend: {
-      ...extendColors.colors,
+      ...extendColors.colors
     },
     // remove default colors
     colors: {
@@ -168,7 +176,7 @@ module.exports = {
       current: 'currentColor',
       black: colors.black,
       white: colors.white,
-      gray: colors.gray,
+      gray: colors.gray
     }
   }
 }
@@ -177,16 +185,17 @@ module.exports = {
 2. then you can write these code:
 
 ```scss
-h1{
-  @apply text-header-text; 
+h1 {
+  @apply text-header-text;
   // eq color: rgb(var(--color-header-text))
 }
-h2{
+h2 {
   @apply text-header-text/70;
   // eq color: rgb(var(--color-header-text) / 0.7)
 }
 ```
-or 
+
+or
 
 ```html
 <div class="text-header-text/70">Hello world</div>
@@ -207,7 +216,6 @@ loaders:{
   }
 }
 ```
-
 
 ### root.scss | export.scss | util.scss
 
