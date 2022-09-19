@@ -4,7 +4,6 @@
     "outDir": "dist",
     "rootDir": "src",
     "declaration": true,
-    "declarationDir": "types",
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "allowJs": true,
