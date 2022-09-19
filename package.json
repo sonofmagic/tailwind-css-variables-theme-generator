@@ -1,6 +1,6 @@
 {
   "name": "tailwind-css-variables-theme-generator",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "tailwind-css-variables-theme-generator",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -26,7 +26,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "keywords": [
-    "tailwind",
+    "tailwindcss",
     "css",
     "generator",
     "theme",
