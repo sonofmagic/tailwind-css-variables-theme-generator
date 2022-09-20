@@ -1,4 +1,3 @@
-import fsp from 'fs/promises'
 import { resolve, dirname } from 'path'
 import { getOption } from './defaults'
 import consola from 'consola'
@@ -8,11 +7,28 @@ import type { IGenerateOption, IOutFileOption, FileEnumType } from './types'
 
 export async function generate (option: IGenerateOption) {
   const opt = getOption(option)
-  const { entryPoint, outdir, files } = opt
+  const fsp = opt.outputFileSystem
+  const { entryPoint, outdir, files, write } = opt
   const exposeAarry = exposeScssVariable(entryPoint)
   const targetDir = dirname(entryPoint)
   const absOutdir = resolve(targetDir, outdir)
   const mergedMap: Record<string, string> = {}
+  const microtaskProducer: (() => Promise<any>)[] = []
+  const result: {
+    scss: {
+      variables?: string
+      // util?: string
+      // export?: string
+      // root?: string
+    }
+    js: {
+      extendColors?: string
+    }
+  } = {
+    js: {},
+    scss: {}
+  }
+
   for (let i = 0; i < exposeAarry.length; i++) {
     const map = exposeAarry[i]
     for (const [key, color] of map) {
@@ -34,11 +50,16 @@ export async function generate (option: IGenerateOption) {
         return `$${getVarName(x)}:${getVarValue(x)};`
       })
       .join('\n')
-    await fsp.writeFile(
-      outfile ?? resolve(absOutdir, 'variables.scss'),
-      scssResult
-    )
-    consola.success('[variables.scss] generate Successfully!')
+    result.scss.variables = scssResult
+    if (write) {
+      microtaskProducer.push(async () => {
+        await fsp.writeFile(
+          outfile ?? resolve(absOutdir, 'variables.scss'),
+          scssResult
+        )
+        consola.success('[variables.scss] generate Successfully!')
+      })
+    }
   }
 
   if (files.extendColors !== false) {
@@ -53,18 +74,22 @@ export async function generate (option: IGenerateOption) {
         return `'${getVarName(x)}': ${getVarValue(x)},`
       })
       .join('\n    ')
-
+    result.js.extendColors = jsResult
     const extendColorsTemplete = await renderTemplete(
       resolve(__dirname, `./t/js/${filename}`),
       {
         '/* {{placeholder}} */': jsResult
       }
     )
-    await fsp.writeFile(
-      outfile ?? resolve(absOutdir, filename),
-      extendColorsTemplete
-    )
-    consola.success(`[${filename}] generate Successfully!`)
+    if (write) {
+      microtaskProducer.push(async () => {
+        await fsp.writeFile(
+          outfile ?? resolve(absOutdir, filename),
+          extendColorsTemplete
+        )
+        consola.success(`[${filename}] generate Successfully!`)
+      })
+    }
   }
 
   async function handleScssFile (key: FileEnumType, filename: string) {
@@ -87,10 +112,11 @@ export async function generate (option: IGenerateOption) {
       consola.success(`[${filename}] generate Successfully!`)
     }
   }
+  microtaskProducer.push(() => handleScssFile('util', 'util.scss'))
+  microtaskProducer.push(() => handleScssFile('export', 'export.scss'))
+  microtaskProducer.push(() => handleScssFile('root', 'root.scss'))
 
-  await handleScssFile('util', 'util.scss')
+  await Promise.all(microtaskProducer.map((fn) => fn()))
 
-  await handleScssFile('export', 'export.scss')
-
-  await handleScssFile('root', 'root.scss')
+  return result
 }
