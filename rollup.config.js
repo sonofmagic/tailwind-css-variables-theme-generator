@@ -6,26 +6,28 @@ import pkg from './package.json'
 const isDev = process.env.NODE_ENV === 'development'
 
 /** @type {import('rollup').RollupOptions} */
-const config = {
-  input: 'src/index.ts',
-  output: [
-    {
-      file: pkg.main,
-      format: 'cjs',
-      sourcemap: isDev
-      // exports: 'auto'
-    }
-    // { format: 'esm', file: pkg.module, sourcemap: isDev }
-  ],
+const configs = [
+  {
+    input: 'src/index.ts',
+    output: [
+      {
+        file: pkg.main,
+        format: 'cjs',
+        sourcemap: isDev
+        // exports: 'auto'
+      }
+      // { format: 'esm', file: pkg.module, sourcemap: isDev }
+    ],
 
-  plugins: [
-    nodeResolve({
-      preferBuiltins: true
-    }),
-    commonjs(),
-    typescript({ tsconfig: './tsconfig.build.json' })
-  ],
-  external: [...Object.keys(pkg.dependencies)]
-}
+    plugins: [
+      nodeResolve({
+        preferBuiltins: true
+      }),
+      commonjs(),
+      typescript({ tsconfig: './tsconfig.build.json' })
+    ],
+    external: [...Object.keys(pkg.dependencies)]
+  }
+]
 
-export default config
+export default configs
