@@ -18,6 +18,7 @@ export function exposeScssVariable (
       }
     }
   }
+
   sass.compile(exposeFilePath, defu(options!, defaultOption))
   return exposeAarry
 }
