@@ -12,7 +12,7 @@
     "build:tsc": "cross-env NODE_ENV=development tsc --build tsconfig.json",
     "test": "jest",
     "init:rename": "node scripts/init/rename.js",
-    "clean": "node scripts/clean.mjs"
+    "clean": "node scripts/clean.js"
   },
   "repository": {
     "type": "git",
@@ -51,7 +51,7 @@
     "@typescript-eslint/parser": "^5.38.0",
     "cross-env": "^7.0.3",
     "defu": "^6.1.0",
-    "del": "^7.0.0",
+    "del": "^6.1.1",
     "eslint": "8.23.1",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "2.26.0",
