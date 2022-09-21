@@ -1,7 +1,7 @@
 import { resolve, dirname } from 'path'
 import { getOption } from './defaults'
 import consola from 'consola'
-import { cmkdir, renderTemplete } from './utils'
+import { cmkdir, renderTemplete, getAbsPath } from './utils'
 import { exposeScssVariable } from './scss'
 import type { IGenerateOption, IOutFileOption, FileEnumType } from './types'
 
@@ -54,7 +54,7 @@ export async function generate (option: IGenerateOption) {
     if (write) {
       microtaskProducer.push(async () => {
         await fsp.writeFile(
-          outfile ?? resolve(absOutdir, 'variables.scss'),
+          getAbsPath(outfile ?? resolve(absOutdir, 'variables.scss')),
           scssResult
         )
         consola.success('[variables.scss] generate Successfully!')
@@ -84,7 +84,7 @@ export async function generate (option: IGenerateOption) {
     if (write) {
       microtaskProducer.push(async () => {
         await fsp.writeFile(
-          outfile ?? resolve(absOutdir, filename),
+          getAbsPath(outfile ?? resolve(absOutdir, filename)),
           extendColorsTemplete
         )
         consola.success(`[${filename}] generate Successfully!`)
@@ -98,18 +98,18 @@ export async function generate (option: IGenerateOption) {
       const src = resolve(__dirname, `./t/scss/${filename}`)
       const dest = resolve(absOutdir, filename)
       if (file === true) {
-        await fsp.copyFile(src, dest)
+        if (write) {
+          await fsp.copyFile(src, dest)
+        }
       } else {
         const { replacement, outfile } = file as Required<IOutFileOption>
-        if (replacement) {
-          const content = await renderTemplete(src, replacement)
-          await fsp.writeFile(outfile ?? dest, content, 'utf-8')
-        } else {
-          await fsp.copyFile(src, outfile ?? dest)
+        const content = await renderTemplete(src, replacement)
+        if (write) {
+          await fsp.writeFile(getAbsPath(outfile ?? dest), content, 'utf-8')
         }
       }
 
-      consola.success(`[${filename}] generate Successfully!`)
+      write && consola.success(`[${filename}] generate Successfully!`)
     }
   }
   microtaskProducer.push(() => handleScssFile('util', 'util.scss'))

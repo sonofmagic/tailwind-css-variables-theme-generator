@@ -45,4 +45,30 @@ describe('generate', () => {
     })
     expect(res).toMatchSnapshot()
   })
+
+  it('relative path', async () => {
+    const res = await generate({
+      entryPoint: './test/fixtures/expose0/index.scss',
+      outdir: 'expose',
+      files: {
+        extendColors: {
+          getVarName (str) {
+            return str.substring(8)
+          }
+        },
+        variables: {
+          getVarName (str) {
+            return str.substring(8)
+          }
+        },
+        export: true,
+        root: true,
+        util: true
+      },
+      sassOptions: {
+        // ...
+      }
+    })
+    expect(res).toMatchSnapshot()
+  })
 })

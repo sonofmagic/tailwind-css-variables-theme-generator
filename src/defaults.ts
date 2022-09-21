@@ -1,6 +1,8 @@
 import defu from 'defu'
 import type { IGenerateOption } from './types'
 import fs from 'fs/promises'
+import { getAbsPath } from './utils'
+
 export function getKey (str: string) {
   return str
 }
@@ -38,7 +40,7 @@ export function getOption (option: IGenerateOption): Required<IGenerateOption> {
     util: true
   }
   return {
-    entryPoint: option.entryPoint,
+    entryPoint: getAbsPath(option.entryPoint),
     outdir: option.outdir ?? '.',
     files: defu(option.files!, filesDefault),
     sassOptions: {},

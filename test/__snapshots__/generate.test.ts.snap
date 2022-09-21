@@ -836,3 +836,18 @@ $custom-text-color:rgb(var(--color-custom-text-color));",
   },
 }
 `;
+
+exports[`generate relative path 1`] = `
+{
+  "js": {
+    "extendColors": "'canvas-default-transparent': withOpacityValue('--color-canvas-default-transparent'),
+    'marketing-icon-primary': withOpacityValue('--color-marketing-icon-primary'),
+    'custom-text-color': withOpacityValue('--color-custom-text-color'),",
+  },
+  "scss": {
+    "variables": "$canvas-default-transparent:rgb(var(--color-canvas-default-transparent));
+$marketing-icon-primary:rgb(var(--color-marketing-icon-primary));
+$custom-text-color:rgb(var(--color-custom-text-color));",
+  },
+}
+`;
