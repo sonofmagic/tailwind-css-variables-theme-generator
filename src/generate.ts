@@ -5,15 +5,15 @@ import { cmkdir, renderTemplete, getAbsPath } from './utils'
 import { exposeScssVariable } from './scss'
 import type { IGenerateOption, IOutFileOption, FileEnumType } from './types'
 
-export async function generate (option: IGenerateOption) {
+export function generateSync (option: IGenerateOption) {
   const opt = getOption(option)
-  const fsp = opt.outputFileSystem
+  const fs = opt.outputFileSystem
   const { entryPoint, outdir, files, write } = opt
   const exposeAarry = exposeScssVariable(entryPoint)
   const targetDir = dirname(entryPoint)
   const absOutdir = resolve(targetDir, outdir)
   const mergedMap: Record<string, string> = {}
-  const microtaskProducer: (() => Promise<any>)[] = []
+  const microtaskProducer: (() => any)[] = []
   const result: {
     scss: {
       variables?: string
@@ -38,7 +38,7 @@ export async function generate (option: IGenerateOption) {
 
   const keys = Object.keys(mergedMap)
 
-  await cmkdir(absOutdir)
+  cmkdir(absOutdir)
   consola.info('[Output Dir]: ' + absOutdir)
   if (files.variables !== false) {
     const { getVarName, getVarValue, outfile } =
@@ -52,8 +52,8 @@ export async function generate (option: IGenerateOption) {
       .join('\n')
     result.scss.variables = scssResult
     if (write) {
-      microtaskProducer.push(async () => {
-        await fsp.writeFile(
+      microtaskProducer.push(() => {
+        fs.writeFileSync(
           getAbsPath(outfile ?? resolve(absOutdir, 'variables.scss')),
           scssResult
         )
@@ -75,15 +75,15 @@ export async function generate (option: IGenerateOption) {
       })
       .join('\n    ')
     result.js.extendColors = jsResult
-    const extendColorsTemplete = await renderTemplete(
+    const extendColorsTemplete = renderTemplete(
       resolve(__dirname, `./t/js/${filename}`),
       {
         '/* {{placeholder}} */': jsResult
       }
     )
     if (write) {
-      microtaskProducer.push(async () => {
-        await fsp.writeFile(
+      microtaskProducer.push(() => {
+        fs.writeFileSync(
           getAbsPath(outfile ?? resolve(absOutdir, filename)),
           extendColorsTemplete
         )
@@ -92,20 +92,20 @@ export async function generate (option: IGenerateOption) {
     }
   }
 
-  async function handleScssFile (key: FileEnumType, filename: string) {
+  function handleScssFile (key: FileEnumType, filename: string) {
     const file = files[key]
     if (file !== false) {
       const src = resolve(__dirname, `./t/scss/${filename}`)
       const dest = resolve(absOutdir, filename)
       if (file === true) {
         if (write) {
-          await fsp.copyFile(src, dest)
+          fs.copyFileSync(src, dest)
         }
       } else {
         const { replacement, outfile } = file as Required<IOutFileOption>
-        const content = await renderTemplete(src, replacement)
+        const content = renderTemplete(src, replacement)
         if (write) {
-          await fsp.writeFile(getAbsPath(outfile ?? dest), content, 'utf-8')
+          fs.writeFileSync(getAbsPath(outfile ?? dest), content, 'utf-8')
         }
       }
 
@@ -116,7 +116,7 @@ export async function generate (option: IGenerateOption) {
   microtaskProducer.push(() => handleScssFile('export', 'export.scss'))
   microtaskProducer.push(() => handleScssFile('root', 'root.scss'))
 
-  await Promise.all(microtaskProducer.map((fn) => fn()))
+  microtaskProducer.map((fn) => fn())
 
   return result
 }

@@ -1,4 +1,4 @@
-import { generate } from '@/generate'
+import { generateSync } from '@/generate'
 import { resolve } from 'path'
 import { existsSync } from 'fs'
 import del from 'del'
@@ -13,8 +13,9 @@ describe('generate', () => {
       resolve(fixturesDir, './expose/expose/util.scss'),
       resolve(fixturesDir, './expose/expose/variables.scss')
     ]
-    await del(filePaths)
-    const res = await generate({
+    del.sync(filePaths)
+
+    const res = generateSync({
       entryPoint: resolve(fixturesDir, './expose/expose.scss'),
       outdir: 'expose',
       files: {
@@ -59,8 +60,8 @@ describe('generate', () => {
     })
   })
 
-  it('relative path', async () => {
-    const res = await generate({
+  it('relative path', () => {
+    const res = generateSync({
       entryPoint: './test/fixtures/expose0/index.scss',
       outdir: 'expose',
       files: {

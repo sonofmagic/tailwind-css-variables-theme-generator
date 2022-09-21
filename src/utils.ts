@@ -1,12 +1,10 @@
-import fsp from 'fs/promises'
-import { constants } from 'fs'
+import fs from 'fs'
 import path from 'path'
 
-export async function cmkdir (dir: string) {
-  try {
-    await fsp.access(dir, constants.F_OK)
-  } catch (error) {
-    await fsp.mkdir(dir, {
+export function cmkdir (dir: string) {
+  const existed = fs.existsSync(dir)
+  if (!existed) {
+    fs.mkdirSync(dir, {
       recursive: true
     })
   }
@@ -20,11 +18,11 @@ export function getAbsPath (p: string) {
   }
 }
 
-export async function renderTemplete (
+export function renderTemplete (
   src: string,
   replacement?: Record<string, string>
 ) {
-  let t = await fsp.readFile(src, 'utf-8')
+  let t = fs.readFileSync(src, 'utf-8')
   if (replacement) {
     const replacements = Object.entries(replacement)
     for (let i = 0; i < replacements.length; i++) {

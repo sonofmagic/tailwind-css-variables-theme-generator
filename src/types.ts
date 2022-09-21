@@ -1,5 +1,5 @@
 import type { Options } from 'sass'
-import type fsp from 'fs/promises'
+import type fs from 'fs'
 export interface IOutFileOption {
   getVarName?: (key: string) => string
   getVarValue?: (key: string) => string
@@ -10,8 +10,8 @@ export interface IOutFileOption {
 }
 
 export interface OutputFileSystem {
-  copyFile: typeof fsp.copyFile
-  writeFile: typeof fsp.writeFile
+  copyFileSync: typeof fs.copyFileSync
+  writeFileSync: typeof fs.writeFileSync
 }
 export interface IGenerateOption {
   entryPoint: string

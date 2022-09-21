@@ -1,6 +1,6 @@
 import defu from 'defu'
 import type { IGenerateOption } from './types'
-import fs from 'fs/promises'
+import fs from 'fs'
 import { getAbsPath } from './utils'
 
 export function getKey (str: string) {
