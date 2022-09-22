@@ -1,19 +1,7 @@
 import defu from 'defu'
 import type { IGenerateOption } from './types'
 import fs from 'fs'
-import { getAbsPath } from './utils'
-
-export function getKey (str: string) {
-  return str
-}
-
-export function getJsValue (str: string) {
-  return `withOpacityValue('${str}')`
-}
-
-export function getScssValue (str: string) {
-  return `rgb(var(${str}))`
-}
+import { getAbsPath, getJsValue, getKey, getScssValue } from './utils'
 
 export function getOption (option: IGenerateOption): Required<IGenerateOption> {
   const filesDefault: IGenerateOption['files'] = {

@@ -24,9 +24,11 @@ export function generateSync (option: IGenerateOption) {
     js: {
       extendColors?: string
     }
+    meta: { name: string; value: string }[]
   } = {
     js: {},
-    scss: {}
+    scss: {},
+    meta: []
   }
 
   for (let i = 0; i < exposeAarry.length; i++) {
@@ -69,12 +71,21 @@ export function generateSync (option: IGenerateOption) {
 
     const { getVarName, getVarValue, outfile } =
       files.extendColors as Required<IOutFileOption>
-    const jsResult = keys
-      .map((x) => {
-        return `'${getVarName(x)}': ${getVarValue(x)},`
+
+    const meta = keys.map((x) => {
+      return {
+        name: getVarName(x),
+        value: getVarValue(x)
+      }
+    })
+
+    const jsResult = meta
+      .map(({ name, value }) => {
+        return `'${name}': ${value},`
       })
       .join('\n    ')
     result.js.extendColors = jsResult
+    result.meta = meta
     const extendColorsTemplete = renderTemplete(
       resolve(__dirname, `./t/js/${filename}`),
       {
@@ -120,3 +131,5 @@ export function generateSync (option: IGenerateOption) {
 
   return result
 }
+
+export const generate = generateSync

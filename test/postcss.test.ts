@@ -1,6 +1,6 @@
 import postcss from 'postcss'
 import tailwindcss from 'tailwindcss'
-
+import createPreset from '@/preset'
 describe('postcss plugin', () => {
   async function getCss (content: string[]) {
     const processor = postcss([
@@ -10,7 +10,19 @@ describe('postcss plugin', () => {
             raw: x
           }
         }),
-        plugins: []
+        plugins: [],
+        presets: [
+          createPreset({
+            entryPoint: './test/fixtures/expose/expose.scss',
+            files: {
+              extendColors: {
+                getVarName (str) {
+                  return str.substring(8)
+                }
+              }
+            }
+          })
+        ]
       })
     ])
     return await processor.process('@tailwind utilities;', {

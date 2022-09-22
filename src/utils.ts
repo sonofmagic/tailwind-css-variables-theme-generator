@@ -32,3 +32,24 @@ export function renderTemplete (
   }
   return t
 }
+
+export function withOpacityValue (variable: string) {
+  return ({ opacityValue }: { opacityValue: string | number }) => {
+    if (opacityValue === undefined) {
+      return `rgb(var(${variable}))`
+    }
+    return `rgb(var(${variable}) / ${opacityValue})`
+  }
+}
+
+export function getKey (str: string) {
+  return str
+}
+
+export function getJsValue (str: string) {
+  return `withOpacityValue('${str}')`
+}
+
+export function getScssValue (str: string) {
+  return `rgb(var(${str}))`
+}

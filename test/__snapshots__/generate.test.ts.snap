@@ -418,6 +418,1664 @@ exports[`generate default generate 1`] = `
     'scale-coral-9': withOpacityValue('--color-scale-coral-9'),
     'custom-text-color': withOpacityValue('--color-custom-text-color'),",
   },
+  "meta": [
+    {
+      "name": "canvas-default-transparent",
+      "value": "withOpacityValue('--color-canvas-default-transparent')",
+    },
+    {
+      "name": "marketing-icon-primary",
+      "value": "withOpacityValue('--color-marketing-icon-primary')",
+    },
+    {
+      "name": "marketing-icon-secondary",
+      "value": "withOpacityValue('--color-marketing-icon-secondary')",
+    },
+    {
+      "name": "diff-blob-addition-num-text",
+      "value": "withOpacityValue('--color-diff-blob-addition-num-text')",
+    },
+    {
+      "name": "diff-blob-addition-fg",
+      "value": "withOpacityValue('--color-diff-blob-addition-fg')",
+    },
+    {
+      "name": "diff-blob-addition-num-bg",
+      "value": "withOpacityValue('--color-diff-blob-addition-num-bg')",
+    },
+    {
+      "name": "diff-blob-addition-line-bg",
+      "value": "withOpacityValue('--color-diff-blob-addition-line-bg')",
+    },
+    {
+      "name": "diff-blob-addition-word-bg",
+      "value": "withOpacityValue('--color-diff-blob-addition-word-bg')",
+    },
+    {
+      "name": "diff-blob-deletion-num-text",
+      "value": "withOpacityValue('--color-diff-blob-deletion-num-text')",
+    },
+    {
+      "name": "diff-blob-deletion-fg",
+      "value": "withOpacityValue('--color-diff-blob-deletion-fg')",
+    },
+    {
+      "name": "diff-blob-deletion-num-bg",
+      "value": "withOpacityValue('--color-diff-blob-deletion-num-bg')",
+    },
+    {
+      "name": "diff-blob-deletion-line-bg",
+      "value": "withOpacityValue('--color-diff-blob-deletion-line-bg')",
+    },
+    {
+      "name": "diff-blob-deletion-word-bg",
+      "value": "withOpacityValue('--color-diff-blob-deletion-word-bg')",
+    },
+    {
+      "name": "diff-blob-hunk-num-bg",
+      "value": "withOpacityValue('--color-diff-blob-hunk-num-bg')",
+    },
+    {
+      "name": "diff-blob-expander-icon",
+      "value": "withOpacityValue('--color-diff-blob-expander-icon')",
+    },
+    {
+      "name": "diff-blob-selected-line-highlight-mix-blend-mode",
+      "value": "withOpacityValue('--color-diff-blob-selected-line-highlight-mix-blend-mode')",
+    },
+    {
+      "name": "diffstat-deletion-border",
+      "value": "withOpacityValue('--color-diffstat-deletion-border')",
+    },
+    {
+      "name": "diffstat-addition-border",
+      "value": "withOpacityValue('--color-diffstat-addition-border')",
+    },
+    {
+      "name": "diffstat-addition-bg",
+      "value": "withOpacityValue('--color-diffstat-addition-bg')",
+    },
+    {
+      "name": "search-keyword-hl",
+      "value": "withOpacityValue('--color-search-keyword-hl')",
+    },
+    {
+      "name": "prettylights-syntax-comment",
+      "value": "withOpacityValue('--color-prettylights-syntax-comment')",
+    },
+    {
+      "name": "prettylights-syntax-constant",
+      "value": "withOpacityValue('--color-prettylights-syntax-constant')",
+    },
+    {
+      "name": "prettylights-syntax-entity",
+      "value": "withOpacityValue('--color-prettylights-syntax-entity')",
+    },
+    {
+      "name": "prettylights-syntax-storage-modifier-import",
+      "value": "withOpacityValue('--color-prettylights-syntax-storage-modifier-import')",
+    },
+    {
+      "name": "prettylights-syntax-entity-tag",
+      "value": "withOpacityValue('--color-prettylights-syntax-entity-tag')",
+    },
+    {
+      "name": "prettylights-syntax-keyword",
+      "value": "withOpacityValue('--color-prettylights-syntax-keyword')",
+    },
+    {
+      "name": "prettylights-syntax-string",
+      "value": "withOpacityValue('--color-prettylights-syntax-string')",
+    },
+    {
+      "name": "prettylights-syntax-variable",
+      "value": "withOpacityValue('--color-prettylights-syntax-variable')",
+    },
+    {
+      "name": "prettylights-syntax-brackethighlighter-unmatched",
+      "value": "withOpacityValue('--color-prettylights-syntax-brackethighlighter-unmatched')",
+    },
+    {
+      "name": "prettylights-syntax-invalid-illegal-text",
+      "value": "withOpacityValue('--color-prettylights-syntax-invalid-illegal-text')",
+    },
+    {
+      "name": "prettylights-syntax-invalid-illegal-bg",
+      "value": "withOpacityValue('--color-prettylights-syntax-invalid-illegal-bg')",
+    },
+    {
+      "name": "prettylights-syntax-carriage-return-text",
+      "value": "withOpacityValue('--color-prettylights-syntax-carriage-return-text')",
+    },
+    {
+      "name": "prettylights-syntax-carriage-return-bg",
+      "value": "withOpacityValue('--color-prettylights-syntax-carriage-return-bg')",
+    },
+    {
+      "name": "prettylights-syntax-string-regexp",
+      "value": "withOpacityValue('--color-prettylights-syntax-string-regexp')",
+    },
+    {
+      "name": "prettylights-syntax-markup-list",
+      "value": "withOpacityValue('--color-prettylights-syntax-markup-list')",
+    },
+    {
+      "name": "prettylights-syntax-markup-heading",
+      "value": "withOpacityValue('--color-prettylights-syntax-markup-heading')",
+    },
+    {
+      "name": "prettylights-syntax-markup-italic",
+      "value": "withOpacityValue('--color-prettylights-syntax-markup-italic')",
+    },
+    {
+      "name": "prettylights-syntax-markup-bold",
+      "value": "withOpacityValue('--color-prettylights-syntax-markup-bold')",
+    },
+    {
+      "name": "prettylights-syntax-markup-deleted-text",
+      "value": "withOpacityValue('--color-prettylights-syntax-markup-deleted-text')",
+    },
+    {
+      "name": "prettylights-syntax-markup-deleted-bg",
+      "value": "withOpacityValue('--color-prettylights-syntax-markup-deleted-bg')",
+    },
+    {
+      "name": "prettylights-syntax-markup-inserted-text",
+      "value": "withOpacityValue('--color-prettylights-syntax-markup-inserted-text')",
+    },
+    {
+      "name": "prettylights-syntax-markup-inserted-bg",
+      "value": "withOpacityValue('--color-prettylights-syntax-markup-inserted-bg')",
+    },
+    {
+      "name": "prettylights-syntax-markup-changed-text",
+      "value": "withOpacityValue('--color-prettylights-syntax-markup-changed-text')",
+    },
+    {
+      "name": "prettylights-syntax-markup-changed-bg",
+      "value": "withOpacityValue('--color-prettylights-syntax-markup-changed-bg')",
+    },
+    {
+      "name": "prettylights-syntax-markup-ignored-text",
+      "value": "withOpacityValue('--color-prettylights-syntax-markup-ignored-text')",
+    },
+    {
+      "name": "prettylights-syntax-markup-ignored-bg",
+      "value": "withOpacityValue('--color-prettylights-syntax-markup-ignored-bg')",
+    },
+    {
+      "name": "prettylights-syntax-meta-diff-range",
+      "value": "withOpacityValue('--color-prettylights-syntax-meta-diff-range')",
+    },
+    {
+      "name": "prettylights-syntax-brackethighlighter-angle",
+      "value": "withOpacityValue('--color-prettylights-syntax-brackethighlighter-angle')",
+    },
+    {
+      "name": "prettylights-syntax-sublimelinter-gutter-mark",
+      "value": "withOpacityValue('--color-prettylights-syntax-sublimelinter-gutter-mark')",
+    },
+    {
+      "name": "prettylights-syntax-constant-other-reference-link",
+      "value": "withOpacityValue('--color-prettylights-syntax-constant-other-reference-link')",
+    },
+    {
+      "name": "codemirror-text",
+      "value": "withOpacityValue('--color-codemirror-text')",
+    },
+    {
+      "name": "codemirror-bg",
+      "value": "withOpacityValue('--color-codemirror-bg')",
+    },
+    {
+      "name": "codemirror-gutters-bg",
+      "value": "withOpacityValue('--color-codemirror-gutters-bg')",
+    },
+    {
+      "name": "codemirror-guttermarker-text",
+      "value": "withOpacityValue('--color-codemirror-guttermarker-text')",
+    },
+    {
+      "name": "codemirror-guttermarker-subtle-text",
+      "value": "withOpacityValue('--color-codemirror-guttermarker-subtle-text')",
+    },
+    {
+      "name": "codemirror-linenumber-text",
+      "value": "withOpacityValue('--color-codemirror-linenumber-text')",
+    },
+    {
+      "name": "codemirror-cursor",
+      "value": "withOpacityValue('--color-codemirror-cursor')",
+    },
+    {
+      "name": "codemirror-selection-bg",
+      "value": "withOpacityValue('--color-codemirror-selection-bg')",
+    },
+    {
+      "name": "codemirror-activeline-bg",
+      "value": "withOpacityValue('--color-codemirror-activeline-bg')",
+    },
+    {
+      "name": "codemirror-matchingbracket-text",
+      "value": "withOpacityValue('--color-codemirror-matchingbracket-text')",
+    },
+    {
+      "name": "codemirror-lines-bg",
+      "value": "withOpacityValue('--color-codemirror-lines-bg')",
+    },
+    {
+      "name": "codemirror-syntax-comment",
+      "value": "withOpacityValue('--color-codemirror-syntax-comment')",
+    },
+    {
+      "name": "codemirror-syntax-constant",
+      "value": "withOpacityValue('--color-codemirror-syntax-constant')",
+    },
+    {
+      "name": "codemirror-syntax-entity",
+      "value": "withOpacityValue('--color-codemirror-syntax-entity')",
+    },
+    {
+      "name": "codemirror-syntax-keyword",
+      "value": "withOpacityValue('--color-codemirror-syntax-keyword')",
+    },
+    {
+      "name": "codemirror-syntax-storage",
+      "value": "withOpacityValue('--color-codemirror-syntax-storage')",
+    },
+    {
+      "name": "codemirror-syntax-string",
+      "value": "withOpacityValue('--color-codemirror-syntax-string')",
+    },
+    {
+      "name": "codemirror-syntax-support",
+      "value": "withOpacityValue('--color-codemirror-syntax-support')",
+    },
+    {
+      "name": "codemirror-syntax-variable",
+      "value": "withOpacityValue('--color-codemirror-syntax-variable')",
+    },
+    {
+      "name": "checks-bg",
+      "value": "withOpacityValue('--color-checks-bg')",
+    },
+    {
+      "name": "checks-run-border-width",
+      "value": "withOpacityValue('--color-checks-run-border-width')",
+    },
+    {
+      "name": "checks-container-border-width",
+      "value": "withOpacityValue('--color-checks-container-border-width')",
+    },
+    {
+      "name": "checks-text-primary",
+      "value": "withOpacityValue('--color-checks-text-primary')",
+    },
+    {
+      "name": "checks-text-secondary",
+      "value": "withOpacityValue('--color-checks-text-secondary')",
+    },
+    {
+      "name": "checks-text-link",
+      "value": "withOpacityValue('--color-checks-text-link')",
+    },
+    {
+      "name": "checks-btn-icon",
+      "value": "withOpacityValue('--color-checks-btn-icon')",
+    },
+    {
+      "name": "checks-btn-hover-icon",
+      "value": "withOpacityValue('--color-checks-btn-hover-icon')",
+    },
+    {
+      "name": "checks-btn-hover-bg",
+      "value": "withOpacityValue('--color-checks-btn-hover-bg')",
+    },
+    {
+      "name": "checks-input-text",
+      "value": "withOpacityValue('--color-checks-input-text')",
+    },
+    {
+      "name": "checks-input-placeholder-text",
+      "value": "withOpacityValue('--color-checks-input-placeholder-text')",
+    },
+    {
+      "name": "checks-input-focus-text",
+      "value": "withOpacityValue('--color-checks-input-focus-text')",
+    },
+    {
+      "name": "checks-input-bg",
+      "value": "withOpacityValue('--color-checks-input-bg')",
+    },
+    {
+      "name": "checks-donut-error",
+      "value": "withOpacityValue('--color-checks-donut-error')",
+    },
+    {
+      "name": "checks-donut-pending",
+      "value": "withOpacityValue('--color-checks-donut-pending')",
+    },
+    {
+      "name": "checks-donut-success",
+      "value": "withOpacityValue('--color-checks-donut-success')",
+    },
+    {
+      "name": "checks-donut-neutral",
+      "value": "withOpacityValue('--color-checks-donut-neutral')",
+    },
+    {
+      "name": "checks-dropdown-text",
+      "value": "withOpacityValue('--color-checks-dropdown-text')",
+    },
+    {
+      "name": "checks-dropdown-bg",
+      "value": "withOpacityValue('--color-checks-dropdown-bg')",
+    },
+    {
+      "name": "checks-dropdown-border",
+      "value": "withOpacityValue('--color-checks-dropdown-border')",
+    },
+    {
+      "name": "checks-dropdown-shadow",
+      "value": "'--color-checks-dropdown-shadow'",
+    },
+    {
+      "name": "checks-dropdown-hover-text",
+      "value": "withOpacityValue('--color-checks-dropdown-hover-text')",
+    },
+    {
+      "name": "checks-dropdown-hover-bg",
+      "value": "withOpacityValue('--color-checks-dropdown-hover-bg')",
+    },
+    {
+      "name": "checks-dropdown-btn-hover-text",
+      "value": "withOpacityValue('--color-checks-dropdown-btn-hover-text')",
+    },
+    {
+      "name": "checks-dropdown-btn-hover-bg",
+      "value": "withOpacityValue('--color-checks-dropdown-btn-hover-bg')",
+    },
+    {
+      "name": "checks-scrollbar-thumb-bg",
+      "value": "withOpacityValue('--color-checks-scrollbar-thumb-bg')",
+    },
+    {
+      "name": "checks-header-label-text",
+      "value": "withOpacityValue('--color-checks-header-label-text')",
+    },
+    {
+      "name": "checks-header-label-open-text",
+      "value": "withOpacityValue('--color-checks-header-label-open-text')",
+    },
+    {
+      "name": "checks-header-border",
+      "value": "withOpacityValue('--color-checks-header-border')",
+    },
+    {
+      "name": "checks-header-icon",
+      "value": "withOpacityValue('--color-checks-header-icon')",
+    },
+    {
+      "name": "checks-line-text",
+      "value": "withOpacityValue('--color-checks-line-text')",
+    },
+    {
+      "name": "checks-line-num-text",
+      "value": "withOpacityValue('--color-checks-line-num-text')",
+    },
+    {
+      "name": "checks-line-timestamp-text",
+      "value": "withOpacityValue('--color-checks-line-timestamp-text')",
+    },
+    {
+      "name": "checks-line-hover-bg",
+      "value": "withOpacityValue('--color-checks-line-hover-bg')",
+    },
+    {
+      "name": "checks-line-selected-bg",
+      "value": "withOpacityValue('--color-checks-line-selected-bg')",
+    },
+    {
+      "name": "checks-line-selected-num-text",
+      "value": "withOpacityValue('--color-checks-line-selected-num-text')",
+    },
+    {
+      "name": "checks-line-dt-fm-text",
+      "value": "withOpacityValue('--color-checks-line-dt-fm-text')",
+    },
+    {
+      "name": "checks-line-dt-fm-bg",
+      "value": "withOpacityValue('--color-checks-line-dt-fm-bg')",
+    },
+    {
+      "name": "checks-gate-bg",
+      "value": "withOpacityValue('--color-checks-gate-bg')",
+    },
+    {
+      "name": "checks-gate-text",
+      "value": "withOpacityValue('--color-checks-gate-text')",
+    },
+    {
+      "name": "checks-gate-waiting-text",
+      "value": "withOpacityValue('--color-checks-gate-waiting-text')",
+    },
+    {
+      "name": "checks-step-header-open-bg",
+      "value": "withOpacityValue('--color-checks-step-header-open-bg')",
+    },
+    {
+      "name": "checks-step-error-text",
+      "value": "withOpacityValue('--color-checks-step-error-text')",
+    },
+    {
+      "name": "checks-step-warning-text",
+      "value": "withOpacityValue('--color-checks-step-warning-text')",
+    },
+    {
+      "name": "checks-logline-text",
+      "value": "withOpacityValue('--color-checks-logline-text')",
+    },
+    {
+      "name": "checks-logline-num-text",
+      "value": "withOpacityValue('--color-checks-logline-num-text')",
+    },
+    {
+      "name": "checks-logline-debug-text",
+      "value": "withOpacityValue('--color-checks-logline-debug-text')",
+    },
+    {
+      "name": "checks-logline-error-text",
+      "value": "withOpacityValue('--color-checks-logline-error-text')",
+    },
+    {
+      "name": "checks-logline-error-num-text",
+      "value": "withOpacityValue('--color-checks-logline-error-num-text')",
+    },
+    {
+      "name": "checks-logline-error-bg",
+      "value": "withOpacityValue('--color-checks-logline-error-bg')",
+    },
+    {
+      "name": "checks-logline-warning-text",
+      "value": "withOpacityValue('--color-checks-logline-warning-text')",
+    },
+    {
+      "name": "checks-logline-warning-num-text",
+      "value": "withOpacityValue('--color-checks-logline-warning-num-text')",
+    },
+    {
+      "name": "checks-logline-warning-bg",
+      "value": "withOpacityValue('--color-checks-logline-warning-bg')",
+    },
+    {
+      "name": "checks-logline-command-text",
+      "value": "withOpacityValue('--color-checks-logline-command-text')",
+    },
+    {
+      "name": "checks-logline-section-text",
+      "value": "withOpacityValue('--color-checks-logline-section-text')",
+    },
+    {
+      "name": "checks-ansi-black",
+      "value": "withOpacityValue('--color-checks-ansi-black')",
+    },
+    {
+      "name": "checks-ansi-black-bright",
+      "value": "withOpacityValue('--color-checks-ansi-black-bright')",
+    },
+    {
+      "name": "checks-ansi-white",
+      "value": "withOpacityValue('--color-checks-ansi-white')",
+    },
+    {
+      "name": "checks-ansi-white-bright",
+      "value": "withOpacityValue('--color-checks-ansi-white-bright')",
+    },
+    {
+      "name": "checks-ansi-gray",
+      "value": "withOpacityValue('--color-checks-ansi-gray')",
+    },
+    {
+      "name": "checks-ansi-red",
+      "value": "withOpacityValue('--color-checks-ansi-red')",
+    },
+    {
+      "name": "checks-ansi-red-bright",
+      "value": "withOpacityValue('--color-checks-ansi-red-bright')",
+    },
+    {
+      "name": "checks-ansi-green",
+      "value": "withOpacityValue('--color-checks-ansi-green')",
+    },
+    {
+      "name": "checks-ansi-green-bright",
+      "value": "withOpacityValue('--color-checks-ansi-green-bright')",
+    },
+    {
+      "name": "checks-ansi-yellow",
+      "value": "withOpacityValue('--color-checks-ansi-yellow')",
+    },
+    {
+      "name": "checks-ansi-yellow-bright",
+      "value": "withOpacityValue('--color-checks-ansi-yellow-bright')",
+    },
+    {
+      "name": "checks-ansi-blue",
+      "value": "withOpacityValue('--color-checks-ansi-blue')",
+    },
+    {
+      "name": "checks-ansi-blue-bright",
+      "value": "withOpacityValue('--color-checks-ansi-blue-bright')",
+    },
+    {
+      "name": "checks-ansi-magenta",
+      "value": "withOpacityValue('--color-checks-ansi-magenta')",
+    },
+    {
+      "name": "checks-ansi-magenta-bright",
+      "value": "withOpacityValue('--color-checks-ansi-magenta-bright')",
+    },
+    {
+      "name": "checks-ansi-cyan",
+      "value": "withOpacityValue('--color-checks-ansi-cyan')",
+    },
+    {
+      "name": "checks-ansi-cyan-bright",
+      "value": "withOpacityValue('--color-checks-ansi-cyan-bright')",
+    },
+    {
+      "name": "project-header-bg",
+      "value": "withOpacityValue('--color-project-header-bg')",
+    },
+    {
+      "name": "project-sidebar-bg",
+      "value": "withOpacityValue('--color-project-sidebar-bg')",
+    },
+    {
+      "name": "project-gradient-in",
+      "value": "withOpacityValue('--color-project-gradient-in')",
+    },
+    {
+      "name": "project-gradient-out",
+      "value": "withOpacityValue('--color-project-gradient-out')",
+    },
+    {
+      "name": "mktg-btn-bg",
+      "value": "withOpacityValue('--color-mktg-btn-bg')",
+    },
+    {
+      "name": "mktg-btn-shadow-outline",
+      "value": "'--color-mktg-btn-shadow-outline'",
+    },
+    {
+      "name": "mktg-btn-shadow-focus",
+      "value": "'--color-mktg-btn-shadow-focus'",
+    },
+    {
+      "name": "mktg-btn-shadow-hover",
+      "value": "'--color-mktg-btn-shadow-hover'",
+    },
+    {
+      "name": "mktg-btn-shadow-hover-muted",
+      "value": "'--color-mktg-btn-shadow-hover-muted'",
+    },
+    {
+      "name": "avatar-bg",
+      "value": "withOpacityValue('--color-avatar-bg')",
+    },
+    {
+      "name": "avatar-border",
+      "value": "withOpacityValue('--color-avatar-border')",
+    },
+    {
+      "name": "avatar-stack-fade",
+      "value": "withOpacityValue('--color-avatar-stack-fade')",
+    },
+    {
+      "name": "avatar-stack-fade-more",
+      "value": "withOpacityValue('--color-avatar-stack-fade-more')",
+    },
+    {
+      "name": "avatar-child-shadow",
+      "value": "'--color-avatar-child-shadow'",
+    },
+    {
+      "name": "topic-tag-border",
+      "value": "withOpacityValue('--color-topic-tag-border')",
+    },
+    {
+      "name": "counter-border",
+      "value": "withOpacityValue('--color-counter-border')",
+    },
+    {
+      "name": "select-menu-backdrop-border",
+      "value": "withOpacityValue('--color-select-menu-backdrop-border')",
+    },
+    {
+      "name": "select-menu-tap-highlight",
+      "value": "withOpacityValue('--color-select-menu-tap-highlight')",
+    },
+    {
+      "name": "select-menu-tap-focus-bg",
+      "value": "withOpacityValue('--color-select-menu-tap-focus-bg')",
+    },
+    {
+      "name": "overlay-shadow",
+      "value": "'--color-overlay-shadow'",
+    },
+    {
+      "name": "header-text",
+      "value": "withOpacityValue('--color-header-text')",
+    },
+    {
+      "name": "header-bg",
+      "value": "withOpacityValue('--color-header-bg')",
+    },
+    {
+      "name": "header-divider",
+      "value": "withOpacityValue('--color-header-divider')",
+    },
+    {
+      "name": "header-logo",
+      "value": "withOpacityValue('--color-header-logo')",
+    },
+    {
+      "name": "header-search-bg",
+      "value": "withOpacityValue('--color-header-search-bg')",
+    },
+    {
+      "name": "header-search-border",
+      "value": "withOpacityValue('--color-header-search-border')",
+    },
+    {
+      "name": "sidenav-selected-bg",
+      "value": "withOpacityValue('--color-sidenav-selected-bg')",
+    },
+    {
+      "name": "menu-bg-active",
+      "value": "withOpacityValue('--color-menu-bg-active')",
+    },
+    {
+      "name": "input-disabled-bg",
+      "value": "withOpacityValue('--color-input-disabled-bg')",
+    },
+    {
+      "name": "timeline-badge-bg",
+      "value": "withOpacityValue('--color-timeline-badge-bg')",
+    },
+    {
+      "name": "ansi-black",
+      "value": "withOpacityValue('--color-ansi-black')",
+    },
+    {
+      "name": "ansi-black-bright",
+      "value": "withOpacityValue('--color-ansi-black-bright')",
+    },
+    {
+      "name": "ansi-white",
+      "value": "withOpacityValue('--color-ansi-white')",
+    },
+    {
+      "name": "ansi-white-bright",
+      "value": "withOpacityValue('--color-ansi-white-bright')",
+    },
+    {
+      "name": "ansi-gray",
+      "value": "withOpacityValue('--color-ansi-gray')",
+    },
+    {
+      "name": "ansi-red",
+      "value": "withOpacityValue('--color-ansi-red')",
+    },
+    {
+      "name": "ansi-red-bright",
+      "value": "withOpacityValue('--color-ansi-red-bright')",
+    },
+    {
+      "name": "ansi-green",
+      "value": "withOpacityValue('--color-ansi-green')",
+    },
+    {
+      "name": "ansi-green-bright",
+      "value": "withOpacityValue('--color-ansi-green-bright')",
+    },
+    {
+      "name": "ansi-yellow",
+      "value": "withOpacityValue('--color-ansi-yellow')",
+    },
+    {
+      "name": "ansi-yellow-bright",
+      "value": "withOpacityValue('--color-ansi-yellow-bright')",
+    },
+    {
+      "name": "ansi-blue",
+      "value": "withOpacityValue('--color-ansi-blue')",
+    },
+    {
+      "name": "ansi-blue-bright",
+      "value": "withOpacityValue('--color-ansi-blue-bright')",
+    },
+    {
+      "name": "ansi-magenta",
+      "value": "withOpacityValue('--color-ansi-magenta')",
+    },
+    {
+      "name": "ansi-magenta-bright",
+      "value": "withOpacityValue('--color-ansi-magenta-bright')",
+    },
+    {
+      "name": "ansi-cyan",
+      "value": "withOpacityValue('--color-ansi-cyan')",
+    },
+    {
+      "name": "ansi-cyan-bright",
+      "value": "withOpacityValue('--color-ansi-cyan-bright')",
+    },
+    {
+      "name": "btn-text",
+      "value": "withOpacityValue('--color-btn-text')",
+    },
+    {
+      "name": "btn-bg",
+      "value": "withOpacityValue('--color-btn-bg')",
+    },
+    {
+      "name": "btn-border",
+      "value": "withOpacityValue('--color-btn-border')",
+    },
+    {
+      "name": "btn-shadow",
+      "value": "'--color-btn-shadow'",
+    },
+    {
+      "name": "btn-inset-shadow",
+      "value": "'--color-btn-inset-shadow'",
+    },
+    {
+      "name": "btn-hover-bg",
+      "value": "withOpacityValue('--color-btn-hover-bg')",
+    },
+    {
+      "name": "btn-hover-border",
+      "value": "withOpacityValue('--color-btn-hover-border')",
+    },
+    {
+      "name": "btn-active-bg",
+      "value": "withOpacityValue('--color-btn-active-bg')",
+    },
+    {
+      "name": "btn-active-border",
+      "value": "withOpacityValue('--color-btn-active-border')",
+    },
+    {
+      "name": "btn-selected-bg",
+      "value": "withOpacityValue('--color-btn-selected-bg')",
+    },
+    {
+      "name": "btn-focus-bg",
+      "value": "withOpacityValue('--color-btn-focus-bg')",
+    },
+    {
+      "name": "btn-focus-border",
+      "value": "withOpacityValue('--color-btn-focus-border')",
+    },
+    {
+      "name": "btn-focus-shadow",
+      "value": "'--color-btn-focus-shadow'",
+    },
+    {
+      "name": "btn-shadow-active",
+      "value": "'--color-btn-shadow-active'",
+    },
+    {
+      "name": "btn-shadow-input-focus",
+      "value": "'--color-btn-shadow-input-focus'",
+    },
+    {
+      "name": "btn-counter-bg",
+      "value": "withOpacityValue('--color-btn-counter-bg')",
+    },
+    {
+      "name": "btn-primary-text",
+      "value": "withOpacityValue('--color-btn-primary-text')",
+    },
+    {
+      "name": "btn-primary-bg",
+      "value": "withOpacityValue('--color-btn-primary-bg')",
+    },
+    {
+      "name": "btn-primary-border",
+      "value": "withOpacityValue('--color-btn-primary-border')",
+    },
+    {
+      "name": "btn-primary-shadow",
+      "value": "'--color-btn-primary-shadow'",
+    },
+    {
+      "name": "btn-primary-inset-shadow",
+      "value": "'--color-btn-primary-inset-shadow'",
+    },
+    {
+      "name": "btn-primary-hover-bg",
+      "value": "withOpacityValue('--color-btn-primary-hover-bg')",
+    },
+    {
+      "name": "btn-primary-hover-border",
+      "value": "withOpacityValue('--color-btn-primary-hover-border')",
+    },
+    {
+      "name": "btn-primary-selected-bg",
+      "value": "withOpacityValue('--color-btn-primary-selected-bg')",
+    },
+    {
+      "name": "btn-primary-selected-shadow",
+      "value": "'--color-btn-primary-selected-shadow'",
+    },
+    {
+      "name": "btn-primary-disabled-text",
+      "value": "withOpacityValue('--color-btn-primary-disabled-text')",
+    },
+    {
+      "name": "btn-primary-disabled-bg",
+      "value": "withOpacityValue('--color-btn-primary-disabled-bg')",
+    },
+    {
+      "name": "btn-primary-disabled-border",
+      "value": "withOpacityValue('--color-btn-primary-disabled-border')",
+    },
+    {
+      "name": "btn-primary-focus-bg",
+      "value": "withOpacityValue('--color-btn-primary-focus-bg')",
+    },
+    {
+      "name": "btn-primary-focus-border",
+      "value": "withOpacityValue('--color-btn-primary-focus-border')",
+    },
+    {
+      "name": "btn-primary-focus-shadow",
+      "value": "'--color-btn-primary-focus-shadow'",
+    },
+    {
+      "name": "btn-primary-icon",
+      "value": "withOpacityValue('--color-btn-primary-icon')",
+    },
+    {
+      "name": "btn-primary-counter-bg",
+      "value": "withOpacityValue('--color-btn-primary-counter-bg')",
+    },
+    {
+      "name": "btn-outline-text",
+      "value": "withOpacityValue('--color-btn-outline-text')",
+    },
+    {
+      "name": "btn-outline-hover-text",
+      "value": "withOpacityValue('--color-btn-outline-hover-text')",
+    },
+    {
+      "name": "btn-outline-hover-bg",
+      "value": "withOpacityValue('--color-btn-outline-hover-bg')",
+    },
+    {
+      "name": "btn-outline-hover-border",
+      "value": "withOpacityValue('--color-btn-outline-hover-border')",
+    },
+    {
+      "name": "btn-outline-hover-shadow",
+      "value": "'--color-btn-outline-hover-shadow'",
+    },
+    {
+      "name": "btn-outline-hover-inset-shadow",
+      "value": "'--color-btn-outline-hover-inset-shadow'",
+    },
+    {
+      "name": "btn-outline-hover-counter-bg",
+      "value": "withOpacityValue('--color-btn-outline-hover-counter-bg')",
+    },
+    {
+      "name": "btn-outline-selected-text",
+      "value": "withOpacityValue('--color-btn-outline-selected-text')",
+    },
+    {
+      "name": "btn-outline-selected-bg",
+      "value": "withOpacityValue('--color-btn-outline-selected-bg')",
+    },
+    {
+      "name": "btn-outline-selected-border",
+      "value": "withOpacityValue('--color-btn-outline-selected-border')",
+    },
+    {
+      "name": "btn-outline-selected-shadow",
+      "value": "'--color-btn-outline-selected-shadow'",
+    },
+    {
+      "name": "btn-outline-disabled-text",
+      "value": "withOpacityValue('--color-btn-outline-disabled-text')",
+    },
+    {
+      "name": "btn-outline-disabled-bg",
+      "value": "withOpacityValue('--color-btn-outline-disabled-bg')",
+    },
+    {
+      "name": "btn-outline-disabled-counter-bg",
+      "value": "withOpacityValue('--color-btn-outline-disabled-counter-bg')",
+    },
+    {
+      "name": "btn-outline-focus-border",
+      "value": "withOpacityValue('--color-btn-outline-focus-border')",
+    },
+    {
+      "name": "btn-outline-focus-shadow",
+      "value": "'--color-btn-outline-focus-shadow'",
+    },
+    {
+      "name": "btn-outline-counter-bg",
+      "value": "withOpacityValue('--color-btn-outline-counter-bg')",
+    },
+    {
+      "name": "btn-danger-text",
+      "value": "withOpacityValue('--color-btn-danger-text')",
+    },
+    {
+      "name": "btn-danger-hover-text",
+      "value": "withOpacityValue('--color-btn-danger-hover-text')",
+    },
+    {
+      "name": "btn-danger-hover-bg",
+      "value": "withOpacityValue('--color-btn-danger-hover-bg')",
+    },
+    {
+      "name": "btn-danger-hover-border",
+      "value": "withOpacityValue('--color-btn-danger-hover-border')",
+    },
+    {
+      "name": "btn-danger-hover-shadow",
+      "value": "'--color-btn-danger-hover-shadow'",
+    },
+    {
+      "name": "btn-danger-hover-inset-shadow",
+      "value": "'--color-btn-danger-hover-inset-shadow'",
+    },
+    {
+      "name": "btn-danger-hover-icon",
+      "value": "withOpacityValue('--color-btn-danger-hover-icon')",
+    },
+    {
+      "name": "btn-danger-hover-counter-bg",
+      "value": "withOpacityValue('--color-btn-danger-hover-counter-bg')",
+    },
+    {
+      "name": "btn-danger-selected-text",
+      "value": "withOpacityValue('--color-btn-danger-selected-text')",
+    },
+    {
+      "name": "btn-danger-selected-bg",
+      "value": "withOpacityValue('--color-btn-danger-selected-bg')",
+    },
+    {
+      "name": "btn-danger-selected-border",
+      "value": "withOpacityValue('--color-btn-danger-selected-border')",
+    },
+    {
+      "name": "btn-danger-selected-shadow",
+      "value": "'--color-btn-danger-selected-shadow'",
+    },
+    {
+      "name": "btn-danger-disabled-text",
+      "value": "withOpacityValue('--color-btn-danger-disabled-text')",
+    },
+    {
+      "name": "btn-danger-disabled-bg",
+      "value": "withOpacityValue('--color-btn-danger-disabled-bg')",
+    },
+    {
+      "name": "btn-danger-disabled-counter-bg",
+      "value": "withOpacityValue('--color-btn-danger-disabled-counter-bg')",
+    },
+    {
+      "name": "btn-danger-focus-border",
+      "value": "withOpacityValue('--color-btn-danger-focus-border')",
+    },
+    {
+      "name": "btn-danger-focus-shadow",
+      "value": "'--color-btn-danger-focus-shadow'",
+    },
+    {
+      "name": "btn-danger-counter-bg",
+      "value": "withOpacityValue('--color-btn-danger-counter-bg')",
+    },
+    {
+      "name": "btn-danger-icon",
+      "value": "withOpacityValue('--color-btn-danger-icon')",
+    },
+    {
+      "name": "underlinenav-icon",
+      "value": "withOpacityValue('--color-underlinenav-icon')",
+    },
+    {
+      "name": "underlinenav-border-hover",
+      "value": "withOpacityValue('--color-underlinenav-border-hover')",
+    },
+    {
+      "name": "action-list-item-inline-divider",
+      "value": "withOpacityValue('--color-action-list-item-inline-divider')",
+    },
+    {
+      "name": "action-list-item-default-hover-bg",
+      "value": "withOpacityValue('--color-action-list-item-default-hover-bg')",
+    },
+    {
+      "name": "action-list-item-default-active-bg",
+      "value": "withOpacityValue('--color-action-list-item-default-active-bg')",
+    },
+    {
+      "name": "action-list-item-default-selected-bg",
+      "value": "withOpacityValue('--color-action-list-item-default-selected-bg')",
+    },
+    {
+      "name": "action-list-item-danger-hover-bg",
+      "value": "withOpacityValue('--color-action-list-item-danger-hover-bg')",
+    },
+    {
+      "name": "action-list-item-danger-active-bg",
+      "value": "withOpacityValue('--color-action-list-item-danger-active-bg')",
+    },
+    {
+      "name": "action-list-item-danger-hover-text",
+      "value": "withOpacityValue('--color-action-list-item-danger-hover-text')",
+    },
+    {
+      "name": "fg-default",
+      "value": "withOpacityValue('--color-fg-default')",
+    },
+    {
+      "name": "fg-muted",
+      "value": "withOpacityValue('--color-fg-muted')",
+    },
+    {
+      "name": "fg-subtle",
+      "value": "withOpacityValue('--color-fg-subtle')",
+    },
+    {
+      "name": "fg-on-emphasis",
+      "value": "withOpacityValue('--color-fg-on-emphasis')",
+    },
+    {
+      "name": "canvas-default",
+      "value": "withOpacityValue('--color-canvas-default')",
+    },
+    {
+      "name": "canvas-overlay",
+      "value": "withOpacityValue('--color-canvas-overlay')",
+    },
+    {
+      "name": "canvas-inset",
+      "value": "withOpacityValue('--color-canvas-inset')",
+    },
+    {
+      "name": "canvas-subtle",
+      "value": "withOpacityValue('--color-canvas-subtle')",
+    },
+    {
+      "name": "border-default",
+      "value": "withOpacityValue('--color-border-default')",
+    },
+    {
+      "name": "border-muted",
+      "value": "withOpacityValue('--color-border-muted')",
+    },
+    {
+      "name": "border-subtle",
+      "value": "withOpacityValue('--color-border-subtle')",
+    },
+    {
+      "name": "shadow-small",
+      "value": "'--color-shadow-small'",
+    },
+    {
+      "name": "shadow-medium",
+      "value": "'--color-shadow-medium'",
+    },
+    {
+      "name": "shadow-large",
+      "value": "'--color-shadow-large'",
+    },
+    {
+      "name": "shadow-extra-large",
+      "value": "'--color-shadow-extra-large'",
+    },
+    {
+      "name": "neutral-emphasis-plus",
+      "value": "withOpacityValue('--color-neutral-emphasis-plus')",
+    },
+    {
+      "name": "neutral-emphasis",
+      "value": "withOpacityValue('--color-neutral-emphasis')",
+    },
+    {
+      "name": "neutral-muted",
+      "value": "withOpacityValue('--color-neutral-muted')",
+    },
+    {
+      "name": "neutral-subtle",
+      "value": "withOpacityValue('--color-neutral-subtle')",
+    },
+    {
+      "name": "accent-fg",
+      "value": "withOpacityValue('--color-accent-fg')",
+    },
+    {
+      "name": "accent-emphasis",
+      "value": "withOpacityValue('--color-accent-emphasis')",
+    },
+    {
+      "name": "accent-muted",
+      "value": "withOpacityValue('--color-accent-muted')",
+    },
+    {
+      "name": "accent-subtle",
+      "value": "withOpacityValue('--color-accent-subtle')",
+    },
+    {
+      "name": "success-fg",
+      "value": "withOpacityValue('--color-success-fg')",
+    },
+    {
+      "name": "success-emphasis",
+      "value": "withOpacityValue('--color-success-emphasis')",
+    },
+    {
+      "name": "success-muted",
+      "value": "withOpacityValue('--color-success-muted')",
+    },
+    {
+      "name": "success-subtle",
+      "value": "withOpacityValue('--color-success-subtle')",
+    },
+    {
+      "name": "attention-fg",
+      "value": "withOpacityValue('--color-attention-fg')",
+    },
+    {
+      "name": "attention-emphasis",
+      "value": "withOpacityValue('--color-attention-emphasis')",
+    },
+    {
+      "name": "attention-muted",
+      "value": "withOpacityValue('--color-attention-muted')",
+    },
+    {
+      "name": "attention-subtle",
+      "value": "withOpacityValue('--color-attention-subtle')",
+    },
+    {
+      "name": "severe-fg",
+      "value": "withOpacityValue('--color-severe-fg')",
+    },
+    {
+      "name": "severe-emphasis",
+      "value": "withOpacityValue('--color-severe-emphasis')",
+    },
+    {
+      "name": "severe-muted",
+      "value": "withOpacityValue('--color-severe-muted')",
+    },
+    {
+      "name": "severe-subtle",
+      "value": "withOpacityValue('--color-severe-subtle')",
+    },
+    {
+      "name": "danger-fg",
+      "value": "withOpacityValue('--color-danger-fg')",
+    },
+    {
+      "name": "danger-emphasis",
+      "value": "withOpacityValue('--color-danger-emphasis')",
+    },
+    {
+      "name": "danger-muted",
+      "value": "withOpacityValue('--color-danger-muted')",
+    },
+    {
+      "name": "danger-subtle",
+      "value": "withOpacityValue('--color-danger-subtle')",
+    },
+    {
+      "name": "done-fg",
+      "value": "withOpacityValue('--color-done-fg')",
+    },
+    {
+      "name": "done-emphasis",
+      "value": "withOpacityValue('--color-done-emphasis')",
+    },
+    {
+      "name": "done-muted",
+      "value": "withOpacityValue('--color-done-muted')",
+    },
+    {
+      "name": "done-subtle",
+      "value": "withOpacityValue('--color-done-subtle')",
+    },
+    {
+      "name": "sponsors-fg",
+      "value": "withOpacityValue('--color-sponsors-fg')",
+    },
+    {
+      "name": "sponsors-emphasis",
+      "value": "withOpacityValue('--color-sponsors-emphasis')",
+    },
+    {
+      "name": "sponsors-muted",
+      "value": "withOpacityValue('--color-sponsors-muted')",
+    },
+    {
+      "name": "sponsors-subtle",
+      "value": "withOpacityValue('--color-sponsors-subtle')",
+    },
+    {
+      "name": "primer-fg-disabled",
+      "value": "withOpacityValue('--color-primer-fg-disabled')",
+    },
+    {
+      "name": "primer-canvas-backdrop",
+      "value": "withOpacityValue('--color-primer-canvas-backdrop')",
+    },
+    {
+      "name": "primer-canvas-sticky",
+      "value": "withOpacityValue('--color-primer-canvas-sticky')",
+    },
+    {
+      "name": "primer-border-active",
+      "value": "withOpacityValue('--color-primer-border-active')",
+    },
+    {
+      "name": "primer-border-contrast",
+      "value": "withOpacityValue('--color-primer-border-contrast')",
+    },
+    {
+      "name": "primer-shadow-highlight",
+      "value": "'--color-primer-shadow-highlight'",
+    },
+    {
+      "name": "primer-shadow-inset",
+      "value": "'--color-primer-shadow-inset'",
+    },
+    {
+      "name": "primer-shadow-focus",
+      "value": "'--color-primer-shadow-focus'",
+    },
+    {
+      "name": "scale-black",
+      "value": "withOpacityValue('--color-scale-black')",
+    },
+    {
+      "name": "scale-white",
+      "value": "withOpacityValue('--color-scale-white')",
+    },
+    {
+      "name": "scale-gray-0",
+      "value": "withOpacityValue('--color-scale-gray-0')",
+    },
+    {
+      "name": "scale-gray-1",
+      "value": "withOpacityValue('--color-scale-gray-1')",
+    },
+    {
+      "name": "scale-gray-2",
+      "value": "withOpacityValue('--color-scale-gray-2')",
+    },
+    {
+      "name": "scale-gray-3",
+      "value": "withOpacityValue('--color-scale-gray-3')",
+    },
+    {
+      "name": "scale-gray-4",
+      "value": "withOpacityValue('--color-scale-gray-4')",
+    },
+    {
+      "name": "scale-gray-5",
+      "value": "withOpacityValue('--color-scale-gray-5')",
+    },
+    {
+      "name": "scale-gray-6",
+      "value": "withOpacityValue('--color-scale-gray-6')",
+    },
+    {
+      "name": "scale-gray-7",
+      "value": "withOpacityValue('--color-scale-gray-7')",
+    },
+    {
+      "name": "scale-gray-8",
+      "value": "withOpacityValue('--color-scale-gray-8')",
+    },
+    {
+      "name": "scale-gray-9",
+      "value": "withOpacityValue('--color-scale-gray-9')",
+    },
+    {
+      "name": "scale-blue-0",
+      "value": "withOpacityValue('--color-scale-blue-0')",
+    },
+    {
+      "name": "scale-blue-1",
+      "value": "withOpacityValue('--color-scale-blue-1')",
+    },
+    {
+      "name": "scale-blue-2",
+      "value": "withOpacityValue('--color-scale-blue-2')",
+    },
+    {
+      "name": "scale-blue-3",
+      "value": "withOpacityValue('--color-scale-blue-3')",
+    },
+    {
+      "name": "scale-blue-4",
+      "value": "withOpacityValue('--color-scale-blue-4')",
+    },
+    {
+      "name": "scale-blue-5",
+      "value": "withOpacityValue('--color-scale-blue-5')",
+    },
+    {
+      "name": "scale-blue-6",
+      "value": "withOpacityValue('--color-scale-blue-6')",
+    },
+    {
+      "name": "scale-blue-7",
+      "value": "withOpacityValue('--color-scale-blue-7')",
+    },
+    {
+      "name": "scale-blue-8",
+      "value": "withOpacityValue('--color-scale-blue-8')",
+    },
+    {
+      "name": "scale-blue-9",
+      "value": "withOpacityValue('--color-scale-blue-9')",
+    },
+    {
+      "name": "scale-green-0",
+      "value": "withOpacityValue('--color-scale-green-0')",
+    },
+    {
+      "name": "scale-green-1",
+      "value": "withOpacityValue('--color-scale-green-1')",
+    },
+    {
+      "name": "scale-green-2",
+      "value": "withOpacityValue('--color-scale-green-2')",
+    },
+    {
+      "name": "scale-green-3",
+      "value": "withOpacityValue('--color-scale-green-3')",
+    },
+    {
+      "name": "scale-green-4",
+      "value": "withOpacityValue('--color-scale-green-4')",
+    },
+    {
+      "name": "scale-green-5",
+      "value": "withOpacityValue('--color-scale-green-5')",
+    },
+    {
+      "name": "scale-green-6",
+      "value": "withOpacityValue('--color-scale-green-6')",
+    },
+    {
+      "name": "scale-green-7",
+      "value": "withOpacityValue('--color-scale-green-7')",
+    },
+    {
+      "name": "scale-green-8",
+      "value": "withOpacityValue('--color-scale-green-8')",
+    },
+    {
+      "name": "scale-green-9",
+      "value": "withOpacityValue('--color-scale-green-9')",
+    },
+    {
+      "name": "scale-yellow-0",
+      "value": "withOpacityValue('--color-scale-yellow-0')",
+    },
+    {
+      "name": "scale-yellow-1",
+      "value": "withOpacityValue('--color-scale-yellow-1')",
+    },
+    {
+      "name": "scale-yellow-2",
+      "value": "withOpacityValue('--color-scale-yellow-2')",
+    },
+    {
+      "name": "scale-yellow-3",
+      "value": "withOpacityValue('--color-scale-yellow-3')",
+    },
+    {
+      "name": "scale-yellow-4",
+      "value": "withOpacityValue('--color-scale-yellow-4')",
+    },
+    {
+      "name": "scale-yellow-5",
+      "value": "withOpacityValue('--color-scale-yellow-5')",
+    },
+    {
+      "name": "scale-yellow-6",
+      "value": "withOpacityValue('--color-scale-yellow-6')",
+    },
+    {
+      "name": "scale-yellow-7",
+      "value": "withOpacityValue('--color-scale-yellow-7')",
+    },
+    {
+      "name": "scale-yellow-8",
+      "value": "withOpacityValue('--color-scale-yellow-8')",
+    },
+    {
+      "name": "scale-yellow-9",
+      "value": "withOpacityValue('--color-scale-yellow-9')",
+    },
+    {
+      "name": "scale-orange-0",
+      "value": "withOpacityValue('--color-scale-orange-0')",
+    },
+    {
+      "name": "scale-orange-1",
+      "value": "withOpacityValue('--color-scale-orange-1')",
+    },
+    {
+      "name": "scale-orange-2",
+      "value": "withOpacityValue('--color-scale-orange-2')",
+    },
+    {
+      "name": "scale-orange-3",
+      "value": "withOpacityValue('--color-scale-orange-3')",
+    },
+    {
+      "name": "scale-orange-4",
+      "value": "withOpacityValue('--color-scale-orange-4')",
+    },
+    {
+      "name": "scale-orange-5",
+      "value": "withOpacityValue('--color-scale-orange-5')",
+    },
+    {
+      "name": "scale-orange-6",
+      "value": "withOpacityValue('--color-scale-orange-6')",
+    },
+    {
+      "name": "scale-orange-7",
+      "value": "withOpacityValue('--color-scale-orange-7')",
+    },
+    {
+      "name": "scale-orange-8",
+      "value": "withOpacityValue('--color-scale-orange-8')",
+    },
+    {
+      "name": "scale-orange-9",
+      "value": "withOpacityValue('--color-scale-orange-9')",
+    },
+    {
+      "name": "scale-red-0",
+      "value": "withOpacityValue('--color-scale-red-0')",
+    },
+    {
+      "name": "scale-red-1",
+      "value": "withOpacityValue('--color-scale-red-1')",
+    },
+    {
+      "name": "scale-red-2",
+      "value": "withOpacityValue('--color-scale-red-2')",
+    },
+    {
+      "name": "scale-red-3",
+      "value": "withOpacityValue('--color-scale-red-3')",
+    },
+    {
+      "name": "scale-red-4",
+      "value": "withOpacityValue('--color-scale-red-4')",
+    },
+    {
+      "name": "scale-red-5",
+      "value": "withOpacityValue('--color-scale-red-5')",
+    },
+    {
+      "name": "scale-red-6",
+      "value": "withOpacityValue('--color-scale-red-6')",
+    },
+    {
+      "name": "scale-red-7",
+      "value": "withOpacityValue('--color-scale-red-7')",
+    },
+    {
+      "name": "scale-red-8",
+      "value": "withOpacityValue('--color-scale-red-8')",
+    },
+    {
+      "name": "scale-red-9",
+      "value": "withOpacityValue('--color-scale-red-9')",
+    },
+    {
+      "name": "scale-purple-0",
+      "value": "withOpacityValue('--color-scale-purple-0')",
+    },
+    {
+      "name": "scale-purple-1",
+      "value": "withOpacityValue('--color-scale-purple-1')",
+    },
+    {
+      "name": "scale-purple-2",
+      "value": "withOpacityValue('--color-scale-purple-2')",
+    },
+    {
+      "name": "scale-purple-3",
+      "value": "withOpacityValue('--color-scale-purple-3')",
+    },
+    {
+      "name": "scale-purple-4",
+      "value": "withOpacityValue('--color-scale-purple-4')",
+    },
+    {
+      "name": "scale-purple-5",
+      "value": "withOpacityValue('--color-scale-purple-5')",
+    },
+    {
+      "name": "scale-purple-6",
+      "value": "withOpacityValue('--color-scale-purple-6')",
+    },
+    {
+      "name": "scale-purple-7",
+      "value": "withOpacityValue('--color-scale-purple-7')",
+    },
+    {
+      "name": "scale-purple-8",
+      "value": "withOpacityValue('--color-scale-purple-8')",
+    },
+    {
+      "name": "scale-purple-9",
+      "value": "withOpacityValue('--color-scale-purple-9')",
+    },
+    {
+      "name": "scale-pink-0",
+      "value": "withOpacityValue('--color-scale-pink-0')",
+    },
+    {
+      "name": "scale-pink-1",
+      "value": "withOpacityValue('--color-scale-pink-1')",
+    },
+    {
+      "name": "scale-pink-2",
+      "value": "withOpacityValue('--color-scale-pink-2')",
+    },
+    {
+      "name": "scale-pink-3",
+      "value": "withOpacityValue('--color-scale-pink-3')",
+    },
+    {
+      "name": "scale-pink-4",
+      "value": "withOpacityValue('--color-scale-pink-4')",
+    },
+    {
+      "name": "scale-pink-5",
+      "value": "withOpacityValue('--color-scale-pink-5')",
+    },
+    {
+      "name": "scale-pink-6",
+      "value": "withOpacityValue('--color-scale-pink-6')",
+    },
+    {
+      "name": "scale-pink-7",
+      "value": "withOpacityValue('--color-scale-pink-7')",
+    },
+    {
+      "name": "scale-pink-8",
+      "value": "withOpacityValue('--color-scale-pink-8')",
+    },
+    {
+      "name": "scale-pink-9",
+      "value": "withOpacityValue('--color-scale-pink-9')",
+    },
+    {
+      "name": "scale-coral-0",
+      "value": "withOpacityValue('--color-scale-coral-0')",
+    },
+    {
+      "name": "scale-coral-1",
+      "value": "withOpacityValue('--color-scale-coral-1')",
+    },
+    {
+      "name": "scale-coral-2",
+      "value": "withOpacityValue('--color-scale-coral-2')",
+    },
+    {
+      "name": "scale-coral-3",
+      "value": "withOpacityValue('--color-scale-coral-3')",
+    },
+    {
+      "name": "scale-coral-4",
+      "value": "withOpacityValue('--color-scale-coral-4')",
+    },
+    {
+      "name": "scale-coral-5",
+      "value": "withOpacityValue('--color-scale-coral-5')",
+    },
+    {
+      "name": "scale-coral-6",
+      "value": "withOpacityValue('--color-scale-coral-6')",
+    },
+    {
+      "name": "scale-coral-7",
+      "value": "withOpacityValue('--color-scale-coral-7')",
+    },
+    {
+      "name": "scale-coral-8",
+      "value": "withOpacityValue('--color-scale-coral-8')",
+    },
+    {
+      "name": "scale-coral-9",
+      "value": "withOpacityValue('--color-scale-coral-9')",
+    },
+    {
+      "name": "custom-text-color",
+      "value": "withOpacityValue('--color-custom-text-color')",
+    },
+  ],
   "scss": {
     "variables": "$canvas-default-transparent:rgb(var(--color-canvas-default-transparent));
 $marketing-icon-primary:rgb(var(--color-marketing-icon-primary));
@@ -844,6 +2502,20 @@ exports[`generate relative path 1`] = `
     'marketing-icon-primary': withOpacityValue('--color-marketing-icon-primary'),
     'custom-text-color': withOpacityValue('--color-custom-text-color'),",
   },
+  "meta": [
+    {
+      "name": "canvas-default-transparent",
+      "value": "withOpacityValue('--color-canvas-default-transparent')",
+    },
+    {
+      "name": "marketing-icon-primary",
+      "value": "withOpacityValue('--color-marketing-icon-primary')",
+    },
+    {
+      "name": "custom-text-color",
+      "value": "withOpacityValue('--color-custom-text-color')",
+    },
+  ],
   "scss": {
     "variables": "$canvas-default-transparent:rgb(var(--color-canvas-default-transparent));
 $marketing-icon-primary:rgb(var(--color-marketing-icon-primary));
