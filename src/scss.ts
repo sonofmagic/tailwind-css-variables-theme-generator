@@ -1,12 +1,23 @@
-import type { Value, SassColor, SassString, Options } from 'sass'
+import type { Value, SassColor, SassString, Options, compile } from 'sass'
 import type { OrderedMap } from 'immutable'
-import * as sass from 'sass'
+import consola from 'consola'
+
 import defu from 'defu'
 // The asynchronous variants are much slower
 export function exposeScssVariable (
   exposeFilePath: string,
   options?: Options<'sync'>
 ) {
+  let sass: { compile: typeof compile }
+  try {
+    sass = require('sass')
+  } catch (error) {
+    consola.error(
+      'Please install sass ! run `npm i -D sass` or `yarn add -D sass` and try again.'
+    )
+    throw error
+  }
+
   const exposeAarry: OrderedMap<SassString, SassColor>[] = []
   const defaultOption: Options<'sync'> = {
     functions: {
