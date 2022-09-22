@@ -11,3 +11,18 @@ exports[`postcss plugin base 1`] = `
     --tw-ring-color: rgb(255 255 255 / var(--tw-ring-opacity))
 }"
 `;
+
+exports[`postcss plugin custom color 1`] = `
+".bg-header-bg\\/70 {
+    background-color: rgb(var(--color-header-bg) / 0.7)
+}
+.text-custom-text-color {
+    --tw-text-opacity: 1;
+    color: rgb(var(--color-custom-text-color) / var(--tw-text-opacity))
+}
+.ring {
+    --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+    --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)
+}"
+`;

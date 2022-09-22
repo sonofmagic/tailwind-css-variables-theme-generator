@@ -39,4 +39,13 @@ describe('postcss plugin', () => {
     ])
     expect(res.css.toString()).toMatchSnapshot()
   })
+
+  it('custom color', async () => {
+    const res = await getCss([
+      `<div class="text-custom-text-color">
+    <p class="bg-header-bg/70">I have a white ring.</p>
+</div>`
+    ])
+    expect(res.css.toString()).toMatchSnapshot()
+  })
 })
