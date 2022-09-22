@@ -2,15 +2,13 @@
 
 > generate files for tailwindcss to build a dynamic web theme
 
-[principle->cn 原理](https://www.icebreaker.top/articles/2021/12/18-flexible-theme)
+[principle zh-cn](https://www.icebreaker.top/articles/2021/12/18-flexible-theme)
 
 ## Features
 
 1. tailwindcss v3 intellisense
 2. global scss variables by additionalData
 3. sass util for color group preset or fetch theme data from backend
-
-总结: 生成文件来构建动态的主题色,自动生成 `tailwindcss v3` 智能提示
 
 ## Usage
 
@@ -34,9 +32,34 @@ $root-vars: (
 $expose: expose(C.$root-vars);
 ```
 
-Then
+### Tailwindcss Preset Usage
 
-### Basic Usage
+```js
+const { createPreset } = require('tailwind-css-variables-theme-generator')
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  // ...
+  presets: [
+    createPreset({
+      entryPoint: 'path/to/expose.scss',
+      files: {
+        extendColors: {
+          getVarName (s) {
+            // custom taiwlindcss util
+            // example:
+            // --color-fg-default -> color-fg-default
+            return s.substring(2)
+          }
+        }
+      }
+    })
+  ]
+}
+
+```
+
+### Script Usage
 
 ```js
 const { generate } = require('tailwind-css-variables-theme-generator')
@@ -53,9 +76,10 @@ const path = require('path')
 
 Copy [github](https://github.com/) Theme and apply it to your application.
 
-1. copy all css var to `sass:map` (`:root`, ` [data-color-mode]`,`[data-light-theme]`,`[data-dark-theme] `)
+1. copy all css var to `sass:map` (`:root`, `[data-color-mode]`,`[data-light-theme]`,`[data-dark-theme]`)
 
 2. prepare following config:
+
 ```js
 const { generate } = require('tailwind-css-variables-theme-generator')
 const path = require('path')
@@ -112,6 +136,7 @@ const path = require('path')
   })
 })()
 ```
+
 3. apply the outputs to your **global** stylesheet and `tailwind.config.js`
 
 ## Options

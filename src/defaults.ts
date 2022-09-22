@@ -27,12 +27,13 @@ export function getOption (option: IGenerateOption): Required<IGenerateOption> {
     },
     util: true
   }
+
   return {
     entryPoint: getAbsPath(option.entryPoint),
     outdir: option.outdir ?? '.',
     files: defu(option.files!, filesDefault),
-    sassOptions: {},
-    outputFileSystem: fs,
-    write: true
+    sassOptions: option.sassOptions ?? {},
+    outputFileSystem: option.outputFileSystem ?? fs,
+    write: Boolean(option.write ?? true)
   }
 }
