@@ -1,6 +1,6 @@
 import postcss from 'postcss'
 import tailwindcss from 'tailwindcss'
-import createPreset from '@/preset'
+import { createPreset } from '@/preset'
 describe('postcss plugin', () => {
   async function getCss (content: string[]) {
     const processor = postcss([
