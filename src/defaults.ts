@@ -34,6 +34,10 @@ export function getOption (option: IGenerateOption): Required<IGenerateOption> {
     files: defu(option.files!, filesDefault),
     sassOptions: option.sassOptions ?? {},
     outputFileSystem: option.outputFileSystem ?? fs,
-    write: Boolean(option.write ?? true)
+    write: Boolean(option.write ?? true),
+    intelliSense: defu(option.intelliSense, {
+      getVarName: getKey,
+      getVarValue: getKey
+    })
   }
 }

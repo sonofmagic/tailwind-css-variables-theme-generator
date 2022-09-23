@@ -26,6 +26,10 @@ export interface IGenerateOption {
   sassOptions?: Options<'sync'>
   outputFileSystem?: OutputFileSystem
   write?: boolean
+  intelliSense?: {
+    getVarName?: (key: string) => string
+    getVarValue?: (key: string) => string
+  }
 }
 
 export type FileEnumType =

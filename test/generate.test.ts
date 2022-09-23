@@ -1,4 +1,5 @@
 import { generateSync } from '@/generate'
+import { getJsValue } from '@/utils'
 import { resolve } from 'path'
 import { existsSync } from 'fs'
 import del from 'del'
@@ -52,6 +53,17 @@ describe('generate', () => {
       },
       sassOptions: {
         // ...
+      },
+      intelliSense: {
+        getVarName (str) {
+          return str.substring(8)
+        },
+        getVarValue (str) {
+          if (str.includes('shadow')) {
+            return `'${str}'`
+          }
+          return `withOpacityValue('${str}')`
+        }
       }
     })
     expect(res).toMatchSnapshot()
@@ -81,6 +93,12 @@ describe('generate', () => {
       },
       sassOptions: {
         // ...
+      },
+      intelliSense: {
+        getVarName (str) {
+          return str.substring(8)
+        },
+        getVarValue: getJsValue
       }
     })
     expect(res).toMatchSnapshot()

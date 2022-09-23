@@ -20,6 +20,11 @@ describe('postcss plugin', () => {
                   return str.substring(8)
                 }
               }
+            },
+            intelliSense: {
+              getVarName (str) {
+                return str.substring(8)
+              }
             }
           })
         ]

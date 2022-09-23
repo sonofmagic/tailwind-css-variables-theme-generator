@@ -39,7 +39,13 @@ export function generateSync (option: IGenerateOption) {
   }
 
   const keys = Object.keys(mergedMap)
-
+  const { getVarName, getVarValue } = opt.intelliSense
+  result.meta = keys.map((x) => {
+    return {
+      name: getVarName?.(x) ?? x,
+      value: getVarValue?.(x) ?? x
+    }
+  })
   cmkdir(absOutdir)
   consola.info('[Output Dir]: ' + absOutdir)
   if (files.variables !== false) {
@@ -72,20 +78,13 @@ export function generateSync (option: IGenerateOption) {
     const { getVarName, getVarValue, outfile } =
       files.extendColors as Required<IOutFileOption>
 
-    const meta = keys.map((x) => {
-      return {
-        name: getVarName(x),
-        value: getVarValue(x)
-      }
-    })
-
-    const jsResult = meta
-      .map(({ name, value }) => {
-        return `'${name}': ${value},`
+    const jsResult = keys
+      .map((x) => {
+        return `'${getVarName(x)}': ${getVarValue(x)},`
       })
       .join('\n    ')
     result.js.extendColors = jsResult
-    result.meta = meta
+
     const extendColorsTemplete = renderTemplete(
       resolve(__dirname, `./t/js/${filename}`),
       {
