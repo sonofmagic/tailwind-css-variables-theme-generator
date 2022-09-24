@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+// import { color as d3Color } from 'd3-color'
 
 export function cmkdir (dir: string) {
   const existed = fs.existsSync(dir)
@@ -53,3 +54,7 @@ export function getJsValue (str: string) {
 export function getScssValue (str: string) {
   return `rgb(var(${str}))`
 }
+
+// export function parseColor (cssColorSpecifier:string) {
+//   return d3Color(cssColorSpecifier)
+// }

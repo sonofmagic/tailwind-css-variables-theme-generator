@@ -1,40 +1,51 @@
-import postcss from 'postcss'
-import tailwindcss from 'tailwindcss'
 import { createPreset } from '@/preset'
+import { createPlugin } from '@/plugin'
+import { createGetCss } from './utils/index'
 describe('postcss plugin', () => {
-  async function getCss (content: string[]) {
-    const processor = postcss([
-      tailwindcss({
-        content: content.map((x) => {
-          return {
-            raw: x
-          }
-        }),
-        plugins: [],
-        presets: [
-          createPreset({
-            entryPoint: './test/fixtures/expose/expose.scss',
-            files: {
-              extendColors: {
-                getVarName (str) {
-                  return str.substring(8)
-                }
-              }
-            },
-            intelliSense: {
+  const getCss = createGetCss(
+    {
+      content: [],
+      plugins: [],
+      presets: [
+        createPreset({
+          entryPoint: './test/fixtures/expose/expose.scss',
+          files: {
+            extendColors: {
               getVarName (str) {
                 return str.substring(8)
               }
             }
-          })
-        ]
-      })
-    ])
-    return await processor.process('@tailwind utilities;', {
-      from: 'index.css',
-      to: 'index.css'
-    })
-  }
+          },
+          intelliSense: {
+            getVarName (str) {
+              return str.substring(8)
+            }
+          }
+        })
+      ]
+    },
+    '@tailwind utilities;'
+  )
+
+  const getCssWithPlugin = createGetCss(
+    {
+      content: [],
+      plugins: [
+        createPlugin({
+          entryPoint: './test/fixtures/expose0/index.scss',
+          intelliSense: {
+            getVarName (str) {
+              return str.substring(8)
+            }
+          }
+        })
+      ],
+      corePlugins: {
+        preflight: false
+      }
+    },
+    '@tailwind base;@tailwind utilities;'
+  )
 
   it('base', async () => {
     const res = await getCss([
@@ -52,5 +63,26 @@ describe('postcss plugin', () => {
 </div>`
     ])
     expect(res.css.toString()).toMatchSnapshot()
+  })
+
+  it('base plugin', async () => {
+    const res = await getCssWithPlugin([
+      `<div class="ring-white">
+    <p>I have a white ring.</p>
+</div>`
+    ])
+    expect(res.css.toString()).toMatchSnapshot()
+  })
+
+  it('custom color plugin', async () => {
+    const res = await getCssWithPlugin([
+      `<div class="text-custom-text-color">
+    <p class="bg-canvas-default-transparent/70">I have a white ring.</p>
+</div>`
+    ])
+    const css = res.css.toString()
+    // expect(css).toContain('text-custom-text-color')
+    // expect(css).toContain('bg-canvas-default-transparent/70')
+    expect(css).toMatchSnapshot()
   })
 })

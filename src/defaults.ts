@@ -38,6 +38,15 @@ export function getOption (option: IGenerateOption): Required<IGenerateOption> {
     intelliSense: defu(option.intelliSense, {
       getVarName: getKey,
       getVarValue: getKey
-    })
+    }),
+    injectBase: option.injectBase ?? true,
+    injectSelector: option.injectSelector ?? ':root',
+    withOpacityValue: option.withOpacityValue ?? true,
+    generateResult: {
+      js: {},
+      scss: {},
+      meta: [],
+      mergedMap: {}
+    }
   }
 }

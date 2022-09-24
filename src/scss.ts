@@ -33,3 +33,16 @@ export function exposeScssVariable (
   sass.compile(exposeFilePath, defu(options!, defaultOption))
   return exposeAarry
 }
+
+export function extractColorStringMap (
+  exposeAarry: ReturnType<typeof exposeScssVariable>
+) {
+  const mergedMap: Record<string, string> = {}
+  for (let i = 0; i < exposeAarry.length; i++) {
+    const map = exposeAarry[i]
+    for (const [key, color] of map) {
+      mergedMap[key.text] = `${color.red} ${color.green} ${color.blue}` // ${color.alpha}
+    }
+  }
+  return mergedMap
+}

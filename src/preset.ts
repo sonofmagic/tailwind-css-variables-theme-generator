@@ -16,7 +16,9 @@ export function createPreset (options: IGenerateOption): Config {
         getVarValue: getKey
       }
     },
-    write: false
+    write: false,
+    withOpacityValue: true,
+    injectBase: true
   }
   const { meta } = generateSync(defu(options, defaults))
   return {

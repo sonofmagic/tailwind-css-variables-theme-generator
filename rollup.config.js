@@ -2,7 +2,8 @@ import typescript from '@rollup/plugin-typescript'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import pkg from './package.json'
-// const isProd = process.env.NODE_ENV === 'production'
+import { visualizer } from 'rollup-plugin-visualizer'
+const isProd = process.env.NODE_ENV === 'production'
 const isDev = process.env.NODE_ENV === 'development'
 
 /** @type {import('rollup').RollupOptions} */
@@ -24,9 +25,15 @@ const configs = [
         preferBuiltins: true
       }),
       commonjs(),
-      typescript({ tsconfig: './tsconfig.build.json', sourceMap: isDev })
+      typescript({ tsconfig: './tsconfig.build.json', sourceMap: isDev }),
+      isProd
+        ? visualizer({
+          // emitFile: true,
+          filename: 'stats/index.html'
+        })
+        : undefined
     ],
-    external: [...Object.keys(pkg.dependencies)]
+    external: [...Object.keys(pkg.dependencies), 'tailwindcss']
   }
 ]
 

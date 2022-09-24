@@ -4,10 +4,35 @@ export interface IOutFileOption {
   getVarName?: (key: string) => string
   getVarValue?: (key: string) => string
   // replacements
-  replacement?: Record<string, string>
+  replacement?: {
+    '{{filepath}}'?: string
+    '{{variableName}}'?: string
+  } & Record<string, string>
   // override default filepath
   outfile?: string
 }
+
+export interface IGenerateResult {
+  scss: {
+    variables?: string
+    // util?: string
+    // export?: string
+    // root?: string
+  }
+  js: {
+    extendColors?: string
+  }
+  meta: { name: string; value: string }[]
+  mergedMap: Record<string, string>
+}
+
+export type IUtilOutFileOption =
+  | Pick<IOutFileOption, 'replacement' | 'outfile'>
+  | boolean
+
+export type IMainOutFileOption =
+  | Pick<IOutFileOption, 'getVarName' | 'getVarValue' | 'outfile'>
+  | boolean
 
 export interface OutputFileSystem {
   copyFileSync: typeof fs.copyFileSync
@@ -17,11 +42,11 @@ export interface IGenerateOption {
   entryPoint: string
   outdir?: string
   files?: {
-    extendColors?: IOutFileOption | boolean
-    variables?: IOutFileOption | boolean
-    root?: IOutFileOption | boolean
-    util?: IOutFileOption | boolean
-    export?: IOutFileOption | boolean
+    extendColors?: IMainOutFileOption
+    variables?: IMainOutFileOption
+    root?: IUtilOutFileOption
+    util?: IUtilOutFileOption
+    export?: IUtilOutFileOption
   }
   sassOptions?: Options<'sync'>
   outputFileSystem?: OutputFileSystem
@@ -30,6 +55,10 @@ export interface IGenerateOption {
     getVarName?: (key: string) => string
     getVarValue?: (key: string) => string
   }
+  withOpacityValue?: boolean
+  injectBase?: boolean
+  injectSelector?: string
+  generateResult?: IGenerateResult
 }
 
 export type FileEnumType =

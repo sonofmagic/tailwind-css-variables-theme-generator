@@ -2,42 +2,31 @@ import { resolve, dirname } from 'path'
 import { getOption } from './defaults'
 import consola from 'consola'
 import { cmkdir, renderTemplete, getAbsPath } from './utils'
-import { exposeScssVariable } from './scss'
-import type { IGenerateOption, IOutFileOption, FileEnumType } from './types'
+import { exposeScssVariable, extractColorStringMap } from './scss'
+import type {
+  IGenerateOption,
+  IOutFileOption,
+  FileEnumType,
+  IGenerateResult
+} from './types'
 
 export function generateSync (option: IGenerateOption) {
   const opt = getOption(option)
   const fs = opt.outputFileSystem
   const { entryPoint, outdir, files, write } = opt
-  const exposeAarry = exposeScssVariable(entryPoint)
+  const mergedMap = extractColorStringMap(exposeScssVariable(entryPoint))
   const targetDir = dirname(entryPoint)
   const absOutdir = resolve(targetDir, outdir)
-  const mergedMap: Record<string, string> = {}
+
   const microtaskProducer: (() => any)[] = []
-  const result: {
-    scss: {
-      variables?: string
-      // util?: string
-      // export?: string
-      // root?: string
-    }
-    js: {
-      extendColors?: string
-    }
-    meta: { name: string; value: string }[]
-  } = {
+  const result: IGenerateResult = {
     js: {},
     scss: {},
-    meta: []
+    meta: [],
+    mergedMap: {}
   }
 
-  for (let i = 0; i < exposeAarry.length; i++) {
-    const map = exposeAarry[i]
-    for (const [key, color] of map) {
-      mergedMap[key.text] = `${color.red} ${color.green} ${color.blue}` // ${color.alpha}
-    }
-  }
-
+  result.mergedMap = mergedMap
   const keys = Object.keys(mergedMap)
   const { getVarName, getVarValue } = opt.intelliSense
   result.meta = keys.map((x) => {
