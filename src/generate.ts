@@ -2,7 +2,7 @@ import { resolve, dirname } from 'path'
 import { getOption } from './defaults'
 import consola from 'consola'
 import { cmkdir, renderTemplete, getAbsPath } from './utils'
-import { exposeScssVariable, extractColorStringMap } from './scss'
+import { exposeScssVariable, extractTheme } from './scss'
 import type {
   IGenerateOption,
   IOutFileOption,
@@ -14,7 +14,7 @@ export function generateSync (option: IGenerateOption) {
   const opt = getOption(option)
   const fs = opt.outputFileSystem
   const { entryPoint, outdir, files, write } = opt
-  const mergedMap = extractColorStringMap(exposeScssVariable(entryPoint))
+  const mergedMap = extractTheme(exposeScssVariable(entryPoint))
   const targetDir = dirname(entryPoint)
   const absOutdir = resolve(targetDir, outdir)
 
@@ -27,7 +27,15 @@ export function generateSync (option: IGenerateOption) {
   }
 
   result.mergedMap = mergedMap
-  const keys = Object.keys(mergedMap)
+
+  const keys = Array.from(
+    Object.values(mergedMap).reduce<Set<string>>((acc, cur) => {
+      Object.keys(cur).forEach((k) => {
+        acc.add(k)
+      })
+      return acc
+    }, new Set())
+  )
   const { getVarName, getVarValue } = opt.intelliSense
   result.meta = keys.map((x) => {
     return {

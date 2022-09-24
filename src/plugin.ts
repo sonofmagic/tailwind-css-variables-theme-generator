@@ -3,7 +3,8 @@ import { IGenerateOption } from './types'
 import { generateSync } from './generate'
 import defu from 'defu'
 import { withOpacityValue, getKey } from './utils'
-type AddBaseParams = Parameters<
+import { MergedMapPlaceholder } from '@/constants'
+export type AddBaseParams = Parameters<
   Parameters<Parameters<typeof twPlugin>['0']>['0']['addBase']
 >['0']
 
@@ -55,11 +56,11 @@ export const createPlugin = withOptions(
   (options) => {
     const { generateResult } = options
     const mergedMap = generateResult!.mergedMap
-    const params: AddBaseParams = [
-      {
-        [options.injectSelector!]: mergedMap
-      }
-    ]
+    const params: AddBaseParams = mergedMap
+    if (options.injectSelector && mergedMap[MergedMapPlaceholder]) {
+      mergedMap[options.injectSelector] = mergedMap[MergedMapPlaceholder]
+      delete mergedMap[MergedMapPlaceholder]
+    }
     return ({ addBase }) => {
       addBase(params)
     }

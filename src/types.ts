@@ -1,5 +1,11 @@
-import type { Options } from 'sass'
+import type { Options, SassColor, SassString } from 'sass'
 import type fs from 'fs'
+import type { OrderedMap } from 'immutable'
+export interface IExposeItem {
+  selector?: string
+  map: OrderedMap<SassString, SassColor>
+}
+
 export interface IOutFileOption {
   getVarName?: (key: string) => string
   getVarValue?: (key: string) => string
@@ -23,7 +29,7 @@ export interface IGenerateResult {
     extendColors?: string
   }
   meta: { name: string; value: string }[]
-  mergedMap: Record<string, string>
+  mergedMap: Record<string, Record<string, string>>
 }
 
 export type IUtilOutFileOption =

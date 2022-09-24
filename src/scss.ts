@@ -1,8 +1,10 @@
 import type { Value, SassColor, SassString, Options, compile } from 'sass'
 import type { OrderedMap } from 'immutable'
 import consola from 'consola'
-
+import { MergedMapPlaceholder } from '@/constants'
 import defu from 'defu'
+import { IExposeItem } from '@/types'
+
 // The asynchronous variants are much slower
 export function exposeScssVariable (
   exposeFilePath: string,
@@ -18,13 +20,26 @@ export function exposeScssVariable (
     throw error
   }
 
-  const exposeAarry: OrderedMap<SassString, SassColor>[] = []
+  const exposeAarry: IExposeItem[] = []
   const defaultOption: Options<'sync'> = {
     functions: {
       'expose($map)': (args: Value[]) => {
         const value = args[0].assertMap('map')
         const map = value.contents as OrderedMap<SassString, SassColor>
-        exposeAarry.push(map)
+        exposeAarry.push({
+          map
+        })
+        return value
+      },
+      'expose-with-selector($map,$selector)': (args: Value[]) => {
+        const value = args[0].assertMap('map')
+        const selector = args[1].assertString('selector')
+        const map = value.contents as OrderedMap<SassString, SassColor>
+
+        exposeAarry.push({
+          selector: selector.text,
+          map
+        })
         return value
       }
     }
@@ -34,14 +49,23 @@ export function exposeScssVariable (
   return exposeAarry
 }
 
-export function extractColorStringMap (
+export function extractTheme (
   exposeAarry: ReturnType<typeof exposeScssVariable>
 ) {
-  const mergedMap: Record<string, string> = {}
+  const mergedMap: Record<string, Record<string, string>> = {}
   for (let i = 0; i < exposeAarry.length; i++) {
-    const map = exposeAarry[i]
-    for (const [key, color] of map) {
-      mergedMap[key.text] = `${color.red} ${color.green} ${color.blue}` // ${color.alpha}
+    const item = exposeAarry[i]
+    for (const [key, color] of item.map) {
+      const selector = item.selector ?? MergedMapPlaceholder
+      if (mergedMap[selector]) {
+        mergedMap[selector][
+          key.text
+        ] = `${color.red} ${color.green} ${color.blue}` // ${color.alpha}
+      } else {
+        mergedMap[selector] = {
+          [key.text]: `${color.red} ${color.green} ${color.blue}`
+        }
+      }
     }
   }
   return mergedMap
