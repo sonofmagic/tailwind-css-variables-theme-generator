@@ -37,7 +37,8 @@ describe('postcss plugin', () => {
             getVarName (str) {
               return str.substring(8)
             }
-          }
+          },
+          injectSelector: 'page'
         })
       ],
       corePlugins: {
@@ -81,8 +82,9 @@ describe('postcss plugin', () => {
 </div>`
     ])
     const css = res.css.toString()
-    // expect(css).toContain('text-custom-text-color')
-    // expect(css).toContain('bg-canvas-default-transparent/70')
+    expect(css).toContain('.text-custom-text-color')
+    expect(css).toContain('.bg-canvas-default-transparent\\/70')
+    expect(css).toContain('page')
     expect(css).toMatchSnapshot()
   })
 })

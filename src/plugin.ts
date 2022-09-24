@@ -57,7 +57,7 @@ export const createPlugin = withOptions(
     const mergedMap = generateResult!.mergedMap
     const params: AddBaseParams = [
       {
-        ':root': mergedMap
+        [options.injectSelector!]: mergedMap
       }
     ]
     return ({ addBase }) => {
