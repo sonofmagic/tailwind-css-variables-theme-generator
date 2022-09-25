@@ -12,7 +12,8 @@
     "build:tsc": "cross-env NODE_ENV=development tsc --build tsconfig.json",
     "test": "jest",
     "init:rename": "node scripts/init/rename.js",
-    "clean": "node scripts/clean.js"
+    "clean": "node scripts/clean.js",
+    "sync": "open-cli https://npmmirror.com/sync/tailwind-css-variables-theme-generator"
   },
   "repository": {
     "type": "git",
@@ -62,6 +63,7 @@
     "jest": "^29.0.3",
     "jest-environment-node-single-context": "^29.0.0",
     "memfs": "^3.4.7",
+    "open-cli": "^7.0.1",
     "postcss": "^8.4.16",
     "rollup": "^2.79.1",
     "rollup-plugin-visualizer": "^5.8.1",
