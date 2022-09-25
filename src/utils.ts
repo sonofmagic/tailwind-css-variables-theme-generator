@@ -46,6 +46,15 @@ export function withOpacityValue (variable: string) {
 export function getKey (str: string) {
   return str
 }
+/**
+ * @description remove css variables -- prefix
+ */
+export function removePrefix (name: string) {
+  if (name.length > 2) {
+    return name.substring(2)
+  }
+  return name
+}
 
 export function getJsValue (str: string) {
   return `withOpacityValue('${str}')`

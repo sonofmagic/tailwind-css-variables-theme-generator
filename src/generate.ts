@@ -43,7 +43,7 @@ export function generateSync (option: IGenerateOption) {
       value: getVarValue?.(x) ?? x
     }
   })
-  cmkdir(absOutdir)
+  write && cmkdir(absOutdir)
   consola.info('[Output Dir]: ' + absOutdir)
   if (files.variables !== false) {
     const { getVarName, getVarValue, outfile } =

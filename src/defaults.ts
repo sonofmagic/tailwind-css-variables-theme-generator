@@ -1,16 +1,22 @@
 import defu from 'defu'
 import type { IGenerateOption } from './types'
 import fs from 'fs'
-import { getAbsPath, getJsValue, getKey, getScssValue } from './utils'
+import {
+  getAbsPath,
+  getJsValue,
+  getKey,
+  getScssValue,
+  removePrefix
+} from './utils'
 
 export function getOption (option: IGenerateOption): Required<IGenerateOption> {
   const filesDefault: IGenerateOption['files'] = {
     extendColors: {
-      getVarName: getKey,
+      getVarName: removePrefix,
       getVarValue: getJsValue
     },
     variables: {
-      getVarName: getKey,
+      getVarName: removePrefix,
       getVarValue: getScssValue
     },
     root: {
@@ -36,7 +42,7 @@ export function getOption (option: IGenerateOption): Required<IGenerateOption> {
     outputFileSystem: option.outputFileSystem ?? fs,
     write: Boolean(option.write ?? true),
     intelliSense: defu(option.intelliSense, {
-      getVarName: getKey,
+      getVarName: removePrefix,
       getVarValue: getKey
     }),
     injectBase: option.injectBase ?? true,

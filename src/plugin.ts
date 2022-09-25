@@ -2,8 +2,9 @@ import twPlugin from 'tailwindcss/plugin'
 import { IGenerateOption } from './types'
 import { generateSync } from './generate'
 import defu from 'defu'
-import { withOpacityValue, getKey } from './utils'
+import { withOpacityValue } from './utils'
 import { MergedMapPlaceholder } from '@/constants'
+
 export type AddBaseParams = Parameters<
   Parameters<Parameters<typeof twPlugin>['0']>['0']['addBase']
 >['0']
@@ -27,10 +28,7 @@ const withOptions: IWithOptions = (
         util: false,
         variables: false,
         export: false,
-        extendColors: {
-          getVarName: getKey,
-          getVarValue: getKey
-        }
+        extendColors: false
       },
       write: false,
       withOpacityValue: true,
