@@ -12,51 +12,122 @@
 
 ## Usage
 
+### Install
+
+```bash
+npm i -D tailwind-css-variables-theme-generator sass
+# or
+yarn add -D tailwind-css-variables-theme-generator sass
+```
+
+### Prepare expose.scss
+
 1. create a sass:map:
 
 ```scss
 // constants.scss
 $root-vars: (
-  --color-canvas-default-transparent: rgba(34, 39, 46, 0),
-  --color-marketing-icon-primary: #6cb6ff,
-  ....
+  --color-canvas-default-transparent: rgba(32, 54, 85, 0),
+  --color-marketing-icon-primary: #053c74,
+  --color-custom-text-color: #546821
+);
+// a other style
+$root-style1-vars: (
+  --color-canvas-default-transparent: rgba(21, 89, 184, 0),
+  --color-marketing-icon-primary: #0b121a,
+  --color-custom-text-color: #43463e
+);
+// another style
+$root-style2-vars: (
+  --color-canvas-default-transparent: rgba(89, 101, 117, 0),
+  --color-marketing-icon-primary: #003879,
+  --color-custom-text-color: #314215,
 );
 ```
 
-2. expose this sass:map -> js
+1. expose `sass:map` and extract value to js
 
 ```scss
 // ./expose/expose.scss
 @use './constants.scss' as C;
 // sass:map
-$expose: expose(C.$root-vars);
+// same as expose-with-selector(C.$root-style1-vars, ":root")
+$style0: expose(C.$root-vars); 
+$style1: expose-with-selector(C.$root-style1-vars, "[data-color-mode='light']");
+$style2: expose-with-selector(C.$root-style2-vars, "[data-color-mode='dark']");
 ```
 
-### Tailwindcss Preset Usage
+### Tailwindcss Plugin Usage
 
 ```js
-const { createPreset } = require('tailwind-css-variables-theme-generator')
+const { createPlugin } = require('tailwind-css-variables-theme-generator')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   // ...
-  presets: [
-    createPreset({
-      entryPoint: 'path/to/expose.scss',
-      files: {
-        extendColors: {
-          getVarName (s) {
-            // custom taiwlindcss util
-            // example:
-            // --color-fg-default -> color-fg-default
-            return s.substring(2)
-          }
-        }
-      }
+  plugins: [
+    createPlugin({
+      entryPoint: 'path/to/expose.scss'
     })
-  ]
+  ],
 }
 
+```
+
+This Plugin will modify `theme.extend.colors` and do `addBase`.
+
+Then you can write follow code in your html:
+
+```html
+<div class="text-color-custom-text-color">
+    <p class="bg-color-canvas-default-transparent/70">1</p>
+</div>
+```
+
+It will generate css:
+
+```css
+:root {--color-canvas-default-transparent: 32 54 85;--color-marketing-icon-primary: 5 60 116;--color-custom-text-color: 84 104 33
+}
+[data-color-mode='light'] {--color-canvas-default-transparent: 21 89 184;--color-marketing-icon-primary: 11 18 26;--color-custom-text-color: 67 70 62
+}
+[data-color-mode='dark'] {--color-canvas-default-transparent: 89 101 117;--color-marketing-icon-primary: 0 56 121;--color-custom-text-color: 49 66 21
+}
+*, ::before, ::after {--tw-border-spacing-x: 0;--tw-border-spacing-y: 0;--tw-translate-x: 0;--tw-translate-y: 0;--tw-rotate: 0;--tw-skew-x: 0;--tw-skew-y: 0;--tw-scale-x: 1;--tw-scale-y: 1;--tw-pan-x:  ;--tw-pan-y:  ;--tw-pinch-zoom:  ;--tw-scroll-snap-strictness: proximity;--tw-ordinal:  ;--tw-slashed-zero:  ;--tw-numeric-figure:  ;--tw-numeric-spacing:  ;--tw-numeric-fraction:  ;--tw-ring-inset:  ;--tw-ring-offset-width: 0px;--tw-ring-offset-color: #fff;--tw-ring-color: rgb(59 130 246 / 0.5);--tw-ring-offset-shadow: 0 0 #0000;--tw-ring-shadow: 0 0 #0000;--tw-shadow: 0 0 #0000;--tw-shadow-colored: 0 0 #0000;--tw-blur:  ;--tw-brightness:  ;--tw-contrast:  ;--tw-grayscale:  ;--tw-hue-rotate:  ;--tw-invert:  ;--tw-saturate:  ;--tw-sepia:  ;--tw-drop-shadow:  ;--tw-backdrop-blur:  ;--tw-backdrop-brightness:  ;--tw-backdrop-contrast:  ;--tw-backdrop-grayscale:  ;--tw-backdrop-hue-rotate:  ;--tw-backdrop-invert:  ;--tw-backdrop-opacity:  ;--tw-backdrop-saturate:  ;--tw-backdrop-sepia:  
+}
+::backdrop {--tw-border-spacing-x: 0;--tw-border-spacing-y: 0;--tw-translate-x: 0;--tw-translate-y: 0;--tw-rotate: 0;--tw-skew-x: 0;--tw-skew-y: 0;--tw-scale-x: 1;--tw-scale-y: 1;--tw-pan-x:  ;--tw-pan-y:  ;--tw-pinch-zoom:  ;--tw-scroll-snap-strictness: proximity;--tw-ordinal:  ;--tw-slashed-zero:  ;--tw-numeric-figure:  ;--tw-numeric-spacing:  ;--tw-numeric-fraction:  ;--tw-ring-inset:  ;--tw-ring-offset-width: 0px;--tw-ring-offset-color: #fff;--tw-ring-color: rgb(59 130 246 / 0.5);--tw-ring-offset-shadow: 0 0 #0000;--tw-ring-shadow: 0 0 #0000;--tw-shadow: 0 0 #0000;--tw-shadow-colored: 0 0 #0000;--tw-blur:  ;--tw-brightness:  ;--tw-contrast:  ;--tw-grayscale:  ;--tw-hue-rotate:  ;--tw-invert:  ;--tw-saturate:  ;--tw-sepia:  ;--tw-drop-shadow:  ;--tw-backdrop-blur:  ;--tw-backdrop-brightness:  ;--tw-backdrop-contrast:  ;--tw-backdrop-grayscale:  ;--tw-backdrop-hue-rotate:  ;--tw-backdrop-invert:  ;--tw-backdrop-opacity:  ;--tw-backdrop-saturate:  ;--tw-backdrop-sepia:  
+}
+.bg-color-canvas-default-transparent\\/70 {background-color: rgb(var(--color-canvas-default-transparent) / 0.7)
+}
+.text-color-custom-text-color {--tw-text-opacity: 1;color: rgb(var(--color-custom-text-color) / var(--tw-text-opacity))
+}
+```
+
+If you want to customize tailwindcss utilities css
+
+```js
+createPlugin({
+  entryPoint: 'path/to/expose.scss',
+  intelliSense: {
+    // formatter var name
+    getVarName (str) {
+      return str.substring(8)
+    },
+    // getVarValue (str){
+    //   return str
+    // }
+  },
+  // use `page` selector replace `:root`
+  // injectSelector: 'page'
+})
+```
+
+Then write follow html: (remove `-color-`)
+
+```html
+<div class="text-custom-text-color">
+    <p class="bg-canvas-default-transparent/70">1</p>
+</div>
 ```
 
 ### Script Usage
@@ -76,7 +147,7 @@ const path = require('path')
 
 Copy [github](https://github.com/) Theme and apply it to your application.
 
-1. copy all css var to `sass:map` (`:root`, `[data-color-mode]`,`[data-light-theme]`,`[data-dark-theme]`)
+1. copy all css var to `sass:map` (`:root`, `[data-color-mode]`,`[data-light-theme]`,`[data-dark-theme]`), you can copy all variables from chrome devtools quickly,and replace all `;` to `,` to transform to `sass:map`.
 
 2. prepare following config:
 
