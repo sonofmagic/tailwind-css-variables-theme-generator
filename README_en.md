@@ -1,27 +1,39 @@
 # tailwind-css-variables-theme-generator
 
-[English]('./README_en.md')
+[中文 Chinese](./README.md)
 
-> 一种基于 `tailwindcss` 的 `just-in-time` 模式的动态多主题色快速生成，和管理方案。
+> generate files for tailwindcss to build a dynamic web theme
 
 - [tailwind-css-variables-theme-generator](#tailwind-css-variables-theme-generator)
-  - [特性](#特性)
-  - [使用方式](#使用方式)
-    - [安装](#安装)
-    - [准备需要被暴露的变量文件](#准备需要被暴露的变量文件)
-    - [作为 `Tailwindcss Plugin` 来使用](#作为-tailwindcss-plugin-来使用)
-    - [作为 `Nodejs` 脚本来使用](#作为-nodejs-脚本来使用)
-  - [原理](#原理)
+  - [Features](#features)
+  - [Usage](#usage)
+    - [Install](#install)
+    - [Prepare expose.scss](#prepare-exposescss)
+    - [Tailwindcss Plugin Usage](#tailwindcss-plugin-usage)
+    - [Script Usage](#script-usage)
+    - [Full Options Usage](#full-options-usage)
+  - [Options](#options)
+    - [entryPoint (required)](#entrypoint-required)
+    - [outdir (default '.')](#outdir-default-)
+    - [files](#files)
+    - [sassOptions (sass.Options<'sync'>)](#sassoptions-sassoptionssync)
+  - [Output Files](#output-files)
+    - [extendColors.js](#extendcolorsjs)
+    - [variables.scss](#variablesscss)
+    - [root.scss | export.scss | util.scss](#rootscss--exportscss--utilscss)
+  - [Theme Toggle](#theme-toggle)
+  - [Live Demo](#live-demo)
+[principle zh-cn](https://www.icebreaker.top/articles/2021/12/18-flexible-theme)
 
-## 特性
+## Features
 
-- 可作为 `tailwindcss` 插件运行， `tailwindcss` IDE 智能提示插件友好
-- 全局的 `scss` 变量注入 (`additionalData`)
-- 生成 `scss` 工具类，方案自由可完全由前端或者后端数据自定义
+1. tailwindcss v3 intellisense
+2. global scss variables by additionalData
+3. sass util for color group preset or fetch theme data from backend
 
-## 使用方式
+## Usage
 
-### 安装
+### Install
 
 ```bash
 npm i -D tailwind-css-variables-theme-generator sass
@@ -29,9 +41,9 @@ npm i -D tailwind-css-variables-theme-generator sass
 yarn add -D tailwind-css-variables-theme-generator sass
 ```
 
-### 准备需要被暴露的变量文件
+### Prepare expose.scss
 
-1. 创建一个或者多个 `sass:map`:
+1. create a sass:map:
 
 ```scss
 // constants.scss
@@ -40,7 +52,7 @@ $root-vars: (
   --color-marketing-icon-primary: #053c74,
   --color-custom-text-color: #546821
 );
-// another style
+// a other style
 $root-style1-vars: (
   --color-canvas-default-transparent: rgba(21, 89, 184, 0),
   --color-marketing-icon-primary: #0b121a,
@@ -54,25 +66,19 @@ $root-style2-vars: (
 );
 ```
 
-> 小技巧：你可以直接从 chrome devtool 把其他网站，所有的变量全部复制下来之后，只要把 `';'` 符号替换成 `','`，就快速产生了一个 `sass:map`。
-
-2. 把这些数据提取出来
+1. expose `sass:map` and extract value to js
 
 ```scss
-// expose.scss
-// 刚刚那个文件
+// ./expose/expose.scss
 @use './constants.scss' as C;
+// sass:map
 // same as expose-with-selector(C.$root-style1-vars, ":root")
 $style0: expose(C.$root-vars); 
 $style1: expose-with-selector(C.$root-style1-vars, "[data-color-mode='light']");
 $style2: expose-with-selector(C.$root-style2-vars, "[data-color-mode='dark']");
 ```
 
-这样数据部分就准备完成了！
-
-### 作为 `Tailwindcss Plugin` 来使用
-
-在 `tailwind.config.js` 中引入，并添加配置：
+### Tailwindcss Plugin Usage
 
 ```js
 const { createPlugin } = require('tailwind-css-variables-theme-generator')
@@ -82,26 +88,24 @@ module.exports = {
   // ...
   plugins: [
     createPlugin({
-      // 推荐使用绝对路径，相对路径基于 process.cwd ，一旦 cwd 路径不对插件容易报错
       entryPoint: 'path/to/expose.scss'
     })
   ],
 }
+
 ```
 
-添加后，插件会自动去修改 `theme.extend.colors` 和 `@tailwind base;`，把主题颜色和`css`变量，自动注入进来。
+This Plugin will modify `theme.extend.colors` and do `addBase`.
 
-这时候你就可以写：
+Then you can write follow code in your html:
 
 ```html
 <div class="text-color-custom-text-color">
-  <p class="bg-color-canvas-default-transparent/70">hello</p>
+    <p class="bg-color-canvas-default-transparent/70">1</p>
 </div>
 ```
 
-> 默认的生成类名为tailwindcss变量前缀(text,bg,border...)，加自定义变量名
-
-插件会自动生成 `css`:
+It will generate css:
 
 ```css
 :root {--color-canvas-default-transparent: 32 54 85;--color-marketing-icon-primary: 5 60 116;--color-custom-text-color: 84 104 33
@@ -120,7 +124,7 @@ module.exports = {
 }
 ```
 
-当然工具类的名称是可以自定义的，比如要去除 `-color-` 这样的变量前缀，就可以这样配置：
+If you want to customize tailwindcss utilities css
 
 ```js
 createPlugin({
@@ -139,30 +143,32 @@ createPlugin({
 })
 ```
 
-这样，上述的类名就变成了这样：
+Then write follow html: (remove `-color-`)
 
 ```html
 <div class="text-custom-text-color">
-  <p class="bg-canvas-default-transparent/70">hello</p>
+    <p class="bg-canvas-default-transparent/70">1</p>
 </div>
 ```
 
-### 作为 `Nodejs` 脚本来使用
-
-当作为 `Nodejs` 脚本来使用时，核心表现为生成文件，让用户自定义引入哪些文件进行使用。
-
-例如：
+### Script Usage
 
 ```js
 const { generateSync } = require('tailwind-css-variables-theme-generator')
 const path = require('path')
-// 在 expose.scss 所在目录生成文件
+
 generateSync({
-  entryPoint: path.resolve(__dirname, 'path/to/expose.scss')
+  entryPoint: path.resolve(__dirname, './expose/expose.scss')
 })
 ```
 
-当然也有更精细的文件生成配置：
+### Full Options Usage
+
+Copy [github](https://github.com/) Theme and apply it to your application.
+
+1. copy all css var to `sass:map` (`:root`, `[data-color-mode]`,`[data-light-theme]`,`[data-dark-theme]`), you can copy all variables from chrome devtools quickly,and replace all `;` to `,` to transform to `sass:map`.
+
+2. prepare following config:
 
 ```js
 const { generateSync } = require('tailwind-css-variables-theme-generator')
@@ -171,12 +177,11 @@ const path = require('path')
 generateSync({
   // entryPoint
   entryPoint: path.resolve(__dirname, './expose/expose.scss'),
-  // default '.'， 生成文件夹的名称
+  // default '.'
   outdir: 'expose',
-  // output file 生成各个文件的配置
+  // output file
   files: {
     // extendColors.js for tailwindcss v3
-    // 扩展的主题色文件
     extendColors: {
       getVarName(str) {
         return str.substring(8)
@@ -191,7 +196,6 @@ generateSync({
       // outfile: path.resolve(__dirname, 'extendColors.js')
     },
     // variables.scss for global scss variables
-    // 全局注入的 scss 变量文件
     variables: {
       getVarName(str) {
         return str.substring(8)
@@ -199,7 +203,6 @@ generateSync({
     },
     // object | true | undefined -> generate this file
     // false -> not generate this file
-    // webpack export 文件
     export: {
       replacement: {
         '{{filepath}}': '../constants.scss',
@@ -207,7 +210,6 @@ generateSync({
       }
     },
     // replacement : Record<string,string>
-    // root css 变量文件
     root: {
       replacement: {
         '{{filepath}}': '../constants.scss',
@@ -215,57 +217,148 @@ generateSync({
       }
     },
     // boolean: false -> not generate this file
-    // scss 工具类文件
     util: true
   },
-  // sass 配置
   sassOptions: {
     // ...
   }
 })
+
 ```
 
-接着，你只需要把这些文件，各自引入即可，比如：
+3. apply the outputs to your **global** stylesheet and `tailwind.config.js`
 
-- `extendColors.js`:
+## Options
+
+### entryPoint (required)
+
+entryPoint should be a scss file and you shall expose your map
+
+```scss
+@use './constants.scss' as C;
+
+$other-vars: (
+  // same name : override constants map ↑
+  --color-canvas-default-transparent: rgba(32, 54, 85, 0),
+  --color-marketing-icon-primary: #053c74,
+  --color-custom-text-color: #546821
+);
+
+$expose: expose(C.$root-vars);
+$expose1: expose($other-vars);
+```
+
+**`expose`** is a [`CustomFunction`](https://sass-lang.com/documentation/js-api/modules#CustomFunction) defined by **`This package`** to expose data to javascript
+
+### outdir (default '.')
+
+output dir
+
+### files
+
+control each output file
+
+- getVarName:`(str:string)=>string`: generate map key function
+- getVarValue:`(str:string)=>string`: generate map value function
+- replacement: `Record<string,string>`: replace template variables
+- outfile: `string`: an abs path, this is a highest priority which will override default outpath.
+
+### sassOptions (sass.Options<'sync'>)
+
+## Output Files
+
+### extendColors.js
+
+1. imported by tailwind.config.js
 
 ```js
 // tailwind.config.js
-const extendColors = require('path/to/extendColors')
+const defaultTheme = require('tailwindcss/defaultTheme')
+const colors = require('tailwindcss/colors')
+const extendColors = require('./client/theme/extendColors.js')
+
+/** @type {import('@types/tailwindcss/tailwind-config').TailwindConfig} */
 module.exports = {
-  theme:{
-    extend:{
-      colors:{
-        // ...
-        ...extendColors.colors,
-      }
+  //...
+  theme: {
+    extend: {
+      ...extendColors.colors
+    },
+    // remove default colors
+    colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+      black: colors.black,
+      white: colors.white,
+      gray: colors.gray
     }
   }
 }
 ```
 
-- `variables.scss`
+2. then you can write these code:
 
-```js
-// webpack.config.js / vue.config.js / nuxt.config.js
-loaders: {
-  scss: {
-    additionalData: '@use "path/to/variables.scss" as *;',
-    sassOptions: {
-      quietDeps: true,
-    },
-  },
+```scss
+h1 {
+  @apply text-header-text;
+  // eq color: rgb(var(--color-header-text))
+}
+h2 {
+  @apply text-header-text/70;
+  // eq color: rgb(var(--color-header-text) / 0.7)
 }
 ```
 
-- `root.scss` | `export.scss` | `util.scss`
+or
 
-全局引入的变量，工具类模板，可生成后，根据各自项目的情况自行修改。
+```html
+<div class="text-header-text/70">Hello world</div>
+```
 
-## 原理
+### variables.scss
 
-[动态调整web系统主题? 看这一篇就够了](https://juejin.cn/post/7043359491382837255)
+1. add to sass-loader option
 
-[动态调整web主题(2) 萃取篇](https://juejin.cn/post/7053671539094323214)
+```js
+// webpack sass-loader option
+loaders:{
+  scss: {
+    additionalData: '@use "@/assets/scss/variables.scss" as *;',
+    sassOptions: {
+      quietDeps: true,
+    }
+  }
+}
+```
 
-[customizing-colors#using-css-variables](https://tailwindcss.com/docs/customizing-colors#using-css-variables)
+### root.scss | export.scss | util.scss
+
+- root.scss for html default css variables
+- export.scss for webpack sass-loader
+- util.scss for rgb / rgba string
+
+## Theme Toggle
+
+```scss
+:root {
+  @each $var, $color in C.$root-vars {
+    #{$var}: Util.getRgbString($color);
+  }
+}
+
+[data-color-mode='light'] {
+  @each $var, $color in Light.$light-vars {
+    #{$var}: Util.getRgbString($color);
+  }
+}
+
+[data-color-mode='dark'] {
+  @each $var, $color in Dark.$dark-vars {
+    #{$var}: Util.getRgbString($color);
+  }
+}
+```
+
+## Live Demo
+
+[Demo](https://www.icebreaker.top/)
