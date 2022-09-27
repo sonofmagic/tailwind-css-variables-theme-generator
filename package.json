@@ -1,7 +1,7 @@
 {
   "name": "tailwind-css-variables-theme-generator",
   "version": "0.3.7",
-  "description": "tailwind-css-variables-theme-generator",
+  "description": "help you generate tailwindcss css variables utilities and change theme esaily by expose your scss variables",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -31,7 +31,13 @@
     "css",
     "generator",
     "theme",
-    "variables"
+    "variables",
+    "generator",
+    "tailwindcss theme",
+    "tailwindcss-utility",
+    "tailwindcss-plugin",
+    "css variables",
+    "tailwindcss multi theme"
   ],
   "author": "SonOfMagic <qq1324318532@gmail.com>",
   "license": "MIT",
