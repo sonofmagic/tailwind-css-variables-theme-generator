@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss'
+import defu from 'defu'
 import { IGenerateOption } from './types'
 import { generateSync } from './generate'
-import defu from 'defu'
 import { withOpacityValue, getKey } from './utils'
 
 export function createPreset (options: IGenerateOption): Config {

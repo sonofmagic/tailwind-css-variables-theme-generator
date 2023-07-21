@@ -1,6 +1,5 @@
-import { resolve, dirname } from 'path'
+import { resolve, dirname } from 'node:path'
 import { getOption } from './defaults'
-import { consola } from 'consola'
 import { cmkdir, renderTemplete, getAbsPath } from './utils'
 import { exposeScssVariable, extractTheme } from './scss'
 import type {
@@ -28,14 +27,12 @@ export function generateSync (option: IGenerateOption) {
 
   result.mergedMap = mergedMap
 
-  const keys = Array.from(
-    Object.values(mergedMap).reduce<Set<string>>((acc, cur) => {
-      Object.keys(cur).forEach((k) => {
+  const keys = [...Object.values(mergedMap).reduce<Set<string>>((acc, cur) => {
+      for (const k of Object.keys(cur)) {
         acc.add(k)
-      })
+      }
       return acc
-    }, new Set())
-  )
+    }, new Set())]
   const { getVarName, getVarValue } = opt.intelliSense
   result.meta = keys.map((x) => {
     return {
@@ -44,7 +41,7 @@ export function generateSync (option: IGenerateOption) {
     }
   })
   write && cmkdir(absOutdir)
-  consola.info('[Output Dir]: ' + absOutdir)
+  console.info('[Output Dir]: ' + absOutdir)
   if (files.variables !== false) {
     const { getVarName, getVarValue, outfile } =
       files.variables as Required<IOutFileOption>
@@ -62,7 +59,7 @@ export function generateSync (option: IGenerateOption) {
           getAbsPath(outfile ?? resolve(absOutdir, 'variables.scss')),
           scssResult
         )
-        consola.success('[variables.scss] generate Successfully!')
+        console.log('[variables.scss] generate Successfully!')
       })
     }
   }
@@ -94,7 +91,7 @@ export function generateSync (option: IGenerateOption) {
           getAbsPath(outfile ?? resolve(absOutdir, filename)),
           extendColorsTemplete
         )
-        consola.success(`[${filename}] generate Successfully!`)
+        console.log(`[${filename}] generate Successfully!`)
       })
     }
   }
@@ -116,7 +113,7 @@ export function generateSync (option: IGenerateOption) {
         }
       }
 
-      write && consola.success(`[${filename}] generate Successfully!`)
+      write && console.log(`[${filename}] generate Successfully!`)
     }
   }
   microtaskProducer.push(() => handleScssFile('util', 'util.scss'))

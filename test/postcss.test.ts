@@ -1,6 +1,6 @@
+import { createGetCss } from './utils/index'
 import { createPreset } from '@/preset'
 import { createPlugin } from '@/plugin'
-import { createGetCss } from './utils/index'
 describe('postcss plugin', () => {
   const getCss = createGetCss(
     {
@@ -12,13 +12,13 @@ describe('postcss plugin', () => {
           files: {
             extendColors: {
               getVarName (str) {
-                return str.substring(8)
+                return str.slice(8)
               }
             }
           },
           intelliSense: {
             getVarName (str) {
-              return str.substring(8)
+              return str.slice(8)
             }
           }
         })
@@ -35,7 +35,7 @@ describe('postcss plugin', () => {
           entryPoint: './test/fixtures/expose0/index.scss',
           intelliSense: {
             getVarName (str) {
-              return str.substring(8)
+              return str.slice(8)
             }
           },
           injectSelector: 'page'

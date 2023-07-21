@@ -1,41 +1,15 @@
-function getJestGlobals (flag = true) {
-  return {
-    afterAll: flag,
-    afterEach: flag,
-    beforeAll: flag,
-    beforeEach: flag,
-    describe: flag,
-    expect: flag,
-    fit: flag,
-    it: flag,
-    jest: flag,
-    test: flag,
-    xdescribe: flag,
-    xit: flag,
-    xtest: flag
-  }
-}
 
 module.exports = {
-  root: false,
-  env: {
-    es2021: true,
-    node: true
-  },
+  root: true,
   extends: [
-    'standard'
-  ],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaVersion: 12,
-    sourceType: 'module'
-  },
-  plugins: [
-    '@typescript-eslint'
+    'icebreaker'
   ],
   rules: {
-  },
-  globals: {
-    ...getJestGlobals()
+    'unicorn/no-array-reduce': 0,
+    'unicorn/no-object-as-default-parameter': 0,
+    'unicorn/filename-case': 0,
+    'unicorn/no-null': 0,
+    'unicorn/prefer-module': 0,
+    'unicorn/prefer-top-level-await': 0
   }
 }

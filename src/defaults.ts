@@ -1,6 +1,6 @@
+import fs from 'node:fs'
 import defu from 'defu'
 import type { IGenerateOption } from './types'
-import fs from 'fs'
 import {
   getAbsPath,
   getJsValue,

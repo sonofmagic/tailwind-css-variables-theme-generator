@@ -1,8 +1,7 @@
 import type { Value, SassColor, SassString, Options, compile } from 'sass'
 import type { OrderedMap } from 'immutable'
-import consola from 'consola'
-import { MergedMapPlaceholder } from '@/constants'
 import defu from 'defu'
+import { MergedMapPlaceholder } from '@/constants'
 import { IExposeItem } from '@/types'
 
 // The asynchronous variants are much slower
@@ -14,7 +13,7 @@ export function exposeScssVariable (
   try {
     sass = require('sass')
   } catch (error) {
-    consola.error(
+    console.error(
       'Please install sass ! run `npm i -D sass` or `yarn add -D sass` and try again.'
     )
     throw error
@@ -53,8 +52,7 @@ export function extractTheme (
   exposeAarry: ReturnType<typeof exposeScssVariable>
 ) {
   const mergedMap: Record<string, Record<string, string>> = {}
-  for (let i = 0; i < exposeAarry.length; i++) {
-    const item = exposeAarry[i]
+  for (const item of exposeAarry) {
     for (const [key, color] of item.map) {
       const selector = item.selector ?? MergedMapPlaceholder
       if (mergedMap[selector]) {

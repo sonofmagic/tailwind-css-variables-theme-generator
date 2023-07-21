@@ -1,5 +1,5 @@
+import type fs from 'node:fs'
 import type { Options, SassColor, SassString } from 'sass'
-import type fs from 'fs'
 import type { OrderedMap } from 'immutable'
 export interface IExposeItem {
   selector?: string

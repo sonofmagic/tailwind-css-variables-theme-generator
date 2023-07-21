@@ -1,5 +1,5 @@
-import fs from 'fs'
-import path from 'path'
+import fs from 'node:fs'
+import path from 'node:path'
 // import { color as d3Color } from 'd3-color'
 
 export function cmkdir (dir: string) {
@@ -12,22 +12,17 @@ export function cmkdir (dir: string) {
 }
 
 export function getAbsPath (p: string) {
-  if (path.isAbsolute(p)) {
-    return p
-  } else {
-    return path.resolve(process.cwd(), p)
-  }
+  return path.isAbsolute(p) ? p : path.resolve(process.cwd(), p);
 }
 
 export function renderTemplete (
   src: string,
   replacement?: Record<string, string>
 ) {
-  let t = fs.readFileSync(src, 'utf-8')
+  let t = fs.readFileSync(src, 'utf8')
   if (replacement) {
     const replacements = Object.entries(replacement)
-    for (let i = 0; i < replacements.length; i++) {
-      const [key, value] = replacements[i]
+    for (const [key, value] of replacements) {
       t = t.replace(key, value)
     }
   }
@@ -51,7 +46,7 @@ export function getKey (str: string) {
  */
 export function removePrefix (name: string) {
   if (name.length > 2) {
-    return name.substring(2)
+    return name.slice(2)
   }
   return name
 }
