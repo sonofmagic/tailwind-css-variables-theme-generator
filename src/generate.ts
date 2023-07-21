@@ -9,10 +9,17 @@ import type {
   IGenerateResult
 } from './types'
 
-export function generateSync (option: IGenerateOption) {
+export function generateSync(option: IGenerateOption) {
   const opt = getOption(option)
-  const fs = opt.outputFileSystem
-  const { entryPoint, outdir, files, write } = opt
+
+  const {
+    entryPoint,
+    outdir,
+    files,
+    write,
+    outputFileSystem: fs,
+    intelliSense
+  } = opt
   const mergedMap = extractTheme(exposeScssVariable(entryPoint))
   const targetDir = dirname(entryPoint)
   const absOutdir = resolve(targetDir, outdir)
@@ -27,13 +34,15 @@ export function generateSync (option: IGenerateOption) {
 
   result.mergedMap = mergedMap
 
-  const keys = [...Object.values(mergedMap).reduce<Set<string>>((acc, cur) => {
+  const keys = [
+    ...Object.values(mergedMap).reduce<Set<string>>((acc, cur) => {
       for (const k of Object.keys(cur)) {
         acc.add(k)
       }
       return acc
-    }, new Set())]
-  const { getVarName, getVarValue } = opt.intelliSense
+    }, new Set())
+  ]
+  const { getVarName, getVarValue } = intelliSense
   result.meta = keys.map((x) => {
     return {
       name: getVarName?.(x) ?? x,
@@ -96,7 +105,7 @@ export function generateSync (option: IGenerateOption) {
     }
   }
 
-  function handleScssFile (key: FileEnumType, filename: string) {
+  function handleScssFile(key: FileEnumType, filename: string) {
     const file = files[key]
     if (file !== false) {
       const src = resolve(__dirname, `./t/scss/${filename}`)
@@ -109,7 +118,7 @@ export function generateSync (option: IGenerateOption) {
         const { replacement, outfile } = file as Required<IOutFileOption>
         const content = renderTemplete(src, replacement)
         if (write) {
-          fs.writeFileSync(getAbsPath(outfile ?? dest), content, 'utf-8')
+          fs.writeFileSync(getAbsPath(outfile ?? dest), content, 'utf8')
         }
       }
 

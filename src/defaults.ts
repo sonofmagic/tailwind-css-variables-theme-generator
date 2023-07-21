@@ -9,7 +9,7 @@ import {
   removePrefix
 } from './utils'
 
-export function getOption (option: IGenerateOption): Required<IGenerateOption> {
+export function getOption(option: IGenerateOption): Required<IGenerateOption> {
   const filesDefault: IGenerateOption['files'] = {
     extendColors: {
       getVarName: removePrefix,

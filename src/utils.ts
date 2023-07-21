@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 // import { color as d3Color } from 'd3-color'
 
-export function cmkdir (dir: string) {
+export function cmkdir(dir: string) {
   const existed = fs.existsSync(dir)
   if (!existed) {
     fs.mkdirSync(dir, {
@@ -11,11 +11,11 @@ export function cmkdir (dir: string) {
   }
 }
 
-export function getAbsPath (p: string) {
-  return path.isAbsolute(p) ? p : path.resolve(process.cwd(), p);
+export function getAbsPath(p: string) {
+  return path.isAbsolute(p) ? p : path.resolve(process.cwd(), p)
 }
 
-export function renderTemplete (
+export function renderTemplete(
   src: string,
   replacement?: Record<string, string>
 ) {
@@ -29,7 +29,7 @@ export function renderTemplete (
   return t
 }
 
-export function withOpacityValue (variable: string) {
+export function withOpacityValue(variable: string) {
   return ({ opacityValue }: { opacityValue: string | number }) => {
     if (opacityValue === undefined) {
       return `rgb(var(${variable}))`
@@ -38,24 +38,24 @@ export function withOpacityValue (variable: string) {
   }
 }
 
-export function getKey (str: string) {
+export function getKey(str: string) {
   return str
 }
 /**
  * @description remove css variables -- prefix
  */
-export function removePrefix (name: string) {
+export function removePrefix(name: string) {
   if (name.length > 2) {
     return name.slice(2)
   }
   return name
 }
 
-export function getJsValue (str: string) {
+export function getJsValue(str: string) {
   return `withOpacityValue('${str}')`
 }
 
-export function getScssValue (str: string) {
+export function getScssValue(str: string) {
   return `rgb(var(${str}))`
 }
 

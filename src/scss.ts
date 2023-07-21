@@ -5,7 +5,7 @@ import { MergedMapPlaceholder } from '@/constants'
 import { IExposeItem } from '@/types'
 
 // The asynchronous variants are much slower
-export function exposeScssVariable (
+export function exposeScssVariable(
   exposeFilePath: string,
   options?: Options<'sync'>
 ) {
@@ -48,7 +48,7 @@ export function exposeScssVariable (
   return exposeAarry
 }
 
-export function extractTheme (
+export function extractTheme(
   exposeAarry: ReturnType<typeof exposeScssVariable>
 ) {
   const mergedMap: Record<string, Record<string, string>> = {}

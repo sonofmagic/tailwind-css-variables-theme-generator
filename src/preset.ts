@@ -4,7 +4,7 @@ import { IGenerateOption } from './types'
 import { generateSync } from './generate'
 import { withOpacityValue, getKey } from './utils'
 
-export function createPreset (options: IGenerateOption): Config {
+export function createPreset(options: IGenerateOption): Config {
   const defaults: Partial<IGenerateOption> = {
     files: {
       root: false,

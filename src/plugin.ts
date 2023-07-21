@@ -52,11 +52,11 @@ const withOptions: IWithOptions = (
 
 export const createPlugin = withOptions(
   (options) => {
-    const { generateResult } = options
+    const { generateResult, injectSelector } = options
     const mergedMap = generateResult!.mergedMap
     const params: AddBaseParams = mergedMap
-    if (options.injectSelector && mergedMap[MergedMapPlaceholder]) {
-      mergedMap[options.injectSelector] = mergedMap[MergedMapPlaceholder]
+    if (injectSelector && mergedMap[MergedMapPlaceholder]) {
+      mergedMap[injectSelector] = mergedMap[MergedMapPlaceholder]
       delete mergedMap[MergedMapPlaceholder]
     }
     return ({ addBase }) => {
