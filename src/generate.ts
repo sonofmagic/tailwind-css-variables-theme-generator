@@ -1,6 +1,6 @@
 import { resolve, dirname } from 'path'
 import { getOption } from './defaults'
-import consola from 'consola'
+import { consola } from 'consola'
 import { cmkdir, renderTemplete, getAbsPath } from './utils'
 import { exposeScssVariable, extractTheme } from './scss'
 import type {

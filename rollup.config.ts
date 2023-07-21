@@ -1,8 +1,13 @@
 import typescript from '@rollup/plugin-typescript'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
-import pkg from './package.json'
+import { readFileSync } from 'node:fs'
 import { visualizer } from 'rollup-plugin-visualizer'
+const pkg = JSON.parse(
+  readFileSync('./package.json', {
+    encoding: 'utf8'
+  })
+)
 const isProd = process.env.NODE_ENV === 'production'
 const isDev = process.env.NODE_ENV === 'development'
 
